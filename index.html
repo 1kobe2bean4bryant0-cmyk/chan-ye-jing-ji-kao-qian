@@ -1,0 +1,2641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>产业经济学 考前唯一知识库 | 郑佳骐</title>
+<style>
+  :root {
+    --bg: #f5f6fa;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #e0e0e0;
+    --primary: #2c3e50;
+    --accent: #3498db;
+    --danger: #e74c3c;
+    --success: #27ae60;
+    --warning: #f39c12;
+    --ppt-bg: #eaf2f8;
+    --understand-bg: #fef9e7;
+    --shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a2e;
+      --card-bg: #16213e;
+      --text: #e8e8e8;
+      --text-light: #a0a0a0;
+      --border: #2a2a4a;
+      --primary: #e8e8e8;
+      --shadow: 0 2px 8px rgba(0,0,0,0.3);
+      --ppt-bg: #1a2a3a;
+      --understand-bg: #2a2a1a;
+    }
+  }
+  
+  * { margin:0; padding:0; box-sizing:border-box; }
+  
+  body {
+    font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .container { max-width: 960px; margin: 0 auto; padding: 16px; }
+  
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1a5276, #2e86c1);
+    color: white;
+    padding: 28px 20px;
+    text-align: center;
+    position: relative;
+  }
+  .header h1 { font-size: 1.6em; margin-bottom: 6px; }
+  .header p { opacity: 0.85; font-size: 0.95em; }
+  .header-badge {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(255,255,255,0.2); padding: 4px 10px;
+    border-radius: 12px; font-size: 0.75em;
+  }
+  
+  /* Controls */
+  .controls {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    background: var(--card-bg); padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: var(--shadow);
+  }
+  .controls input {
+    flex: 1; min-width: 150px; padding: 8px 12px;
+    border: 1px solid var(--border); border-radius: 6px;
+    font-size: 14px; background: var(--bg); color: var(--text);
+  }
+  .controls button {
+    padding: 8px 14px; border: 1px solid var(--border);
+    border-radius: 6px; cursor: pointer; font-size: 13px;
+    background: var(--card-bg); color: var(--text);
+    white-space: nowrap; transition: all 0.2s;
+  }
+  .controls button:hover { background: var(--accent); color: white; border-color: var(--accent); }
+  .controls button.active { background: var(--accent); color: white; border-color: var(--accent); }
+  
+  .progress-bar {
+    height: 3px; background: #e0e0e0; position: sticky; top: 52px; z-index: 99;
+  }
+  .progress-fill {
+    height: 100%; background: var(--accent); width: 0%;
+    transition: width 0.3s;
+  }
+  
+  /* Tabs */
+  .tabs {
+    display: flex; border-bottom: 2px solid var(--border);
+    background: var(--card-bg);
+  }
+  .tab {
+    flex: 1; padding: 12px 16px; text-align: center; cursor: pointer;
+    font-weight: 500; border-bottom: 3px solid transparent;
+    transition: all 0.2s; color: var(--text-light);
+  }
+  .tab:hover { color: var(--accent); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+  
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  
+  /* Chapter Cards */
+  .chapter-card {
+    background: var(--card-bg); border-radius: 10px;
+    margin: 16px 0; box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .chapter-header {
+    padding: 14px 18px; cursor: pointer;
+    transition: background 0.2s; user-select: none;
+  }
+  .chapter-header:hover { background: rgba(0,0,0,0.03); }
+  .chapter-title-row {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .ch-stars { font-size: 0.95em; }
+  .ch-title { font-size: 1.05em; font-weight: 600; flex: 1; }
+  .ch-weight { font-size: 0.8em; color: var(--text-light); background: var(--bg); padding: 2px 8px; border-radius: 10px; }
+  .chapter-body { padding: 0 18px 18px; }
+  .prereq-box {
+    background: var(--ppt-bg); padding: 10px 14px;
+    border-radius: 6px; margin: 10px 0; font-size: 0.92em;
+  }
+  
+  /* Questions */
+  .question-item {
+    border: 1px solid var(--border); border-radius: 8px;
+    margin: 10px 0; overflow: hidden;
+  }
+  .question-header {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px; cursor: pointer;
+    background: var(--bg); transition: background 0.2s;
+  }
+  .question-header:hover { background: rgba(0,0,0,0.05); }
+  .q-num { font-weight: 700; color: var(--accent); min-width: 30px; }
+  .q-title { flex: 1; font-weight: 500; }
+  .q-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .tag { padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: 600; }
+  .tag-计算 { background: #d5f5e3; color: #1e8449; }
+  .tag-核心 { background: #fadbd8; color: #c0392b; }
+  .tag-名解 { background: #d6eaf8; color: #2e86c1; }
+  .tag-重点 { background: #fdebd0; color: #d35400; }
+  .tag-⭐⭐⭐⭐⭐核心 { background: #f5b7b1; color: #922b21; }
+  .tag-模型 { background: #e8daef; color: #7d3c98; }
+  .tag-案例 { background: #d5f5e3; color: #1e8449; }
+  .tag-简答 { background: #d6eaf8; color: #2e86c1; }
+  
+  .question-body { padding: 14px; }
+  
+  /* Dual column */
+  .dual-column {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    margin-bottom: 12px;
+  }
+  @media (max-width: 640px) { .dual-column { grid-template-columns: 1fr; } }
+  .ppt-column, .understand-column { padding: 12px; border-radius: 6px; font-size: 0.9em; }
+  .ppt-column { background: var(--ppt-bg); }
+  .understand-column { background: var(--understand-bg); }
+  .column-label { font-weight: 600; margin-bottom: 6px; font-size: 0.92em; }
+  
+  /* Sections */
+  .solution-section, .quiz-card, .tricky-card, .quick-memo {
+    margin: 8px 0; border-radius: 6px; overflow: hidden;
+  }
+  .section-header, .memo-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 12px; cursor: pointer; font-weight: 600;
+    background: var(--bg); border-radius: 6px;
+  }
+  .section-header:hover, .memo-header:hover { background: rgba(0,0,0,0.05); }
+  .section-body { padding: 10px 12px; }
+  .expand-icon { transition: transform 0.2s; font-size: 0.8em; }
+  
+  .quiz-card {
+    background: #eafaf1; padding: 10px 14px;
+    border-left: 3px solid var(--success);
+  }
+  .tricky-card {
+    background: #fdedec; padding: 10px 14px;
+    border-left: 3px solid var(--danger);
+  }
+  
+  /* Sprint tab */
+  .sprint-section { padding: 16px 0; }
+  .term-table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+  .term-table th, .term-table td { padding: 6px 10px; border: 1px solid var(--border); text-align: left; }
+  .term-table th { background: var(--bg); font-weight: 600; }
+  .term-table tr:nth-child(even) { background: var(--bg); }
+  
+  .appendix-section {
+    background: var(--card-bg); border-radius: 10px;
+    padding: 20px; margin: 20px 0; box-shadow: var(--shadow);
+  }
+  .appendix-section .mini-block {
+    margin: 16px 0; padding: 14px;
+    background: var(--bg); border-radius: 8px;
+  }
+  
+  /* Print */
+  @media print {
+    .controls, .tabs, .header-badge, .progress-bar { display: none !important; }
+    .chapter-body { display: block !important; }
+    .question-body { display: block !important; }
+    .section-body { display: block !important; }
+    .chapter-card { break-inside: avoid; }
+    .header { background: #1a5276 !important; color: white !important; -webkit-print-color-adjust: exact; }
+    .ppt-column, .understand-column, .quiz-card, .tricky-card { -webkit-print-color-adjust: exact; }
+    body { font-size: 11pt; }
+  }
+  
+  /* Hidden items in search */
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📚 产业经济学 · 考前唯一知识库</h1>
+  <p>四川农业大学 · 郑佳骐 · 全部知识点+作业答案+易错题 · 单文件替代所有资料</p>
+  <span class="header-badge">2026-07-02 考试</span>
+</div>
+
+<div class="controls">
+  <input type="text" id="searchInput" placeholder="🔍 搜索任何知识点、术语、题目…" oninput="doSearch(this.value)">
+  <button onclick="expandAll()">📖 展开全部</button>
+  <button onclick="collapseAll()">📕 折叠全部</button>
+  <button onclick="sprintMode()">🚀 3小时突击</button>
+  <button onclick="toggleDark()">🌓 深色</button>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(this, 'tab1')">📖 完整知识库</div>
+  <div class="tab" onclick="switchTab(this, 'tab2')">⚡ 考前极限版（打印用）</div>
+</div>
+
+<div class="container">
+
+<div id="tab1" class="tab-content active">
+  <div style="text-align:center;padding:12px;margin:8px 0;background:var(--card-bg);border-radius:8px;box-shadow:var(--shadow);">
+    <p style="color:var(--text-light);font-size:0.9em;">
+      💡 点击章标题展开整章 · 点击题号展开题目详情 · 知识点按⭐⭐⭐权重排列
+    </p>
+  </div>
+  
+        <div class="chapter-card" data-chapter="ch3" data-stars="⭐⭐⭐⭐⭐">
+            <div class="chapter-header" onclick="toggleChapter(this)" style="border-left: 5px solid #e74c3c;">
+                <div class="chapter-title-row">
+                    <span class="ch-stars">⭐⭐⭐⭐⭐</span>
+                    <span class="ch-title">第三章 垄断定价与价格歧视</span>
+                    <span class="ch-weight">计算题锁定！约30分</span>
+                    <span class="expand-icon">▶</span>
+                </div>
+            </div>
+            <div class="chapter-body" style="display:none;">
+                <div class="prereq-box">🚀 前置30秒：反需求函数(P=a-bQ)、MR=MC定价原则、贴现因子δ(δ=1表示未来收入与当期等值)</div>
+                <div class="questions-list">
+                    
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#1</span>
+                    <span class="q-title">耐用消费品定价（出租 vs. 出售）科斯问题</span>
+                    <span class="q-tags"><span class="tag tag-计算">计算</span> <span class="tag tag-核心">核心</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>科斯猜想：在耐用消费品市场中，若消费者预期厂商未来会降价，他们将推迟购买，迫使垄断厂商以竞争性价格出售，丧失垄断利润。应对措施：①出租替代出售 ②产品快速迭代 ③承诺不降价 ④限制产量 ⑤降低产品耐用性</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>科斯猜想像这样：你知道iPhone明年会降价一半，你还会今年买吗？不会。所以厂商只能定低价。解决方法就是让消费者没法等——出租(你租了就不能等降价)、迭代(明年出新款让你想换)、承诺不降价(说好了就做到)</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">已知：MC=4，每期需求 Q=16-2R，δ=1，仅2期
+
+(1)出租情形：
+反需求 R=8-0.5Q，MR=8-Q
+MR=MC → 8-Q=4 → Q=4，R=8-0.5×4=6
+每期利润=6×4-4×4=8，两期总利润=16
+
+(2)出售情形（可合同规定各期产量）：
+企业可承诺未来产量，消费者理性预期
+第1期 Q₁=4，第2期 Q₂=4
+企业可承诺Q₁=Q₂=4，总利润=16（与出租同）</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>科斯猜想主要适用于什么类型的商品？<br>A. 易腐烂商品  B. 耐用消费品  C. 日用品  D. 服务产品<br>正确答案：B</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 注意区分「可承诺不降价」和「不可承诺」。不可承诺时，消费者预期厂商第2期会降价，第1期购买意愿下降，厂商会失去垄断利润。可承诺时，才能维持垄断价格。</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#2</span>
+                    <span class="q-title">三级价格歧视</span>
+                    <span class="q-tags"><span class="tag tag-计算">计算</span> <span class="tag tag-⭐⭐⭐⭐⭐核心">⭐⭐⭐⭐⭐核心</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>三级价格歧视：根据不同消费群体设置不同价格。条件：①厂商有市场势力 ②能识别不同群体 ③市场可有效分割防止套利。定价原则：MR₁=MR₂=MC</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>三级歧视就是学生票和成人票的区别。你先把人群分开（学生/成人），然后对价格敏感的人群（学生）定低价，对不敏感的人群（成人）定高价。关键是不能让成人在学生手里买票转售</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">已知：MC=50，地区1 Q₁=200-P₁，地区2 Q₂=150-P₂
+
+(1)统一价格：
+总需求 Q=350-2P(P≤150)，反需求 P=175-0.5Q
+MR=175-Q，MR=MC → 175-Q=50 → Q=125，P=112.5
+
+(2)价格歧视：
+地区1：MR₁=200-2Q₁=50 → Q₁=75，P₁=125
+地区2：MR₂=150-2Q₂=50 → Q₂=50，P₂=100
+
+(3)利润比较：
+统一π=125×112.5-50×125=7812.5
+歧视π=75×125+50×100-50×125=8125
+歧视利润增加312.5
+
+(4)福利变化：
+统一CS=3281.25+703.125=3984.375
+歧视CS=2812.5+1250=4062.5
+地区1消费者受损，地区2受益，总CS略有增加</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>三级价格歧视中，厂商对需求弹性____的群体收取更高价格？<br>A. 较大  B. 较小  C. 相同  D. 无法判断<br>正确答案：B（弹性越小→提价对销量影响越小→收高价）</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 常见错误：计算利润时忘记减去总成本 MC×总Q。另注意统一价格时需先判断在哪个需求段（P≤150还是P>150）</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#3</span>
+                    <span class="q-title">三种价格歧视及信息要求</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span> <span class="tag tag-重点">重点</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>一级价格歧视（完全价格歧视）：向每个消费者收取其保留价格，需知道每个消费者的需求曲线。二级价格歧视：按购买数量或套餐定价，消费者自我选择，需知道偏好分布。三级价格歧视：根据不同群体设置不同价格，需知道群体特征并能分割市场</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>一级=对每个人单独定价（理想化，现实中难做到）
+二级=量大从优（买1瓶5块，买1箱3块/瓶——你自己选）
+三级=学生票vs成人票（按群体分）</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">| 类型 | 定义 | 信息要求 |
+|------|------|---------|
+| 一级 | 向每个消费者收其保留价格 | 知道每个人的需求曲线 |
+| 二级 | 按数量/套餐定价，自我选择 | 知道偏好分布，不知个体身份 |
+| 三级 | 按消费群体设置不同价格 | 知道群体特征，能有效分割市场 |</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>游乐园对儿童收取半价属于哪种价格歧视？<br>A. 一级  B. 二级  C. 三级  D. 都不是<br>正确答案：C</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 二级歧视的关键是「自我选择」——设计不同套餐让消费者自己选择适合自己的</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#4</span>
+                    <span class="q-title">替代品与互补品的多产品定价</span>
+                    <span class="q-tags"><span class="tag tag-理解">理解</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>替代品：降低一种产品价格会减少另一种产品的需求。定价时需考虑'自相残杀'效应，价格高于单产品垄断价。互补品：降低一种产品价格会增加另一种产品的需求（'搭售'效应），定价时可低于单产品垄断价，通过互补品利润弥补</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>替代品=包子vs馒头——你包子降价了，馒头就卖不出去了。互补品=打印机vs墨盒——打印机降价了，买的人多了，墨盒就卖得更多</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">替代品定价：高于单产品垄断价（因为要考虑自相残杀效应）
+互补品定价：低于单产品垄断价（因为可通过互补品利润弥补损失）</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>吉列低价卖刀架、高价卖刀片属于什么定价策略？<br>A. 替代品定价  B. 互补品搭售定价  C. 捆绑销售  D. 三级歧视<br>正确答案：B</p>
+                </div>
+                
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#5</span>
+                    <span class="q-title">价格歧视的前提条件</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span> <span class="tag tag-必考">必考</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>价格歧视的前提条件：①厂商具有市场势力（能影响价格）②厂商能识别不同的消费者或群体 ③市场可以有效分割，防止套利（转售）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>三个条件缺一不可：能定高价(P>MC)、能分出谁是谁、能防止低价的被转卖给高价的</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">三个条件：
+1. 市场势力：厂商是价格制定者而非接受者
+2. 识别能力：能区分不同支付意愿的消费者
+3. 市场分割：防止低价购买者转售给高价购买者（套利）</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>以下哪个不是价格歧视的前提条件？<br>A. 厂商有市场势力  B. 能识别不同消费者  C. 市场可分割  D. 产品是同质的<br>正确答案：D</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 最容易被忽略的是第3条「防止套利」——如果消费者可以转售，歧视就失效了</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#6</span>
+                    <span class="q-title">科斯猜想及应对措施</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span> <span class="tag tag-重点">重点</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>科斯猜想：在耐用消费品市场中，若消费者预期厂商未来会降价，他们将推迟购买，迫使垄断厂商以竞争性价格出售，丧失垄断利润。应对措施：①出租替代出售 ②产品快速迭代（使旧产品贬值）③承诺不降价（如最低价格保证条款）④限制产量（人为稀缺）⑤降低产品耐用性</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>科斯猜想的本质是「消费者会等更便宜的价格」。你卖耐用品（用很久的东西），消费者知道你今天不降价明天也会降，他就等着。你只好现在就降价。解决办法就是让消费者没法等</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">五种应对措施：
+1. 出租：只租不卖，消费者不能等降价
+2. 快速迭代：新款一出旧款贬值，想买新的人等不了
+3. 承诺不降价：最低价格保证，降了赔你钱
+4. 限制产量：限量供应制造稀缺
+5. 降低耐用性：用不了多久就要换新</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>以下哪项不是应对科斯猜想的措施？<br>A. 出租替代出售  B. 产品快速迭代  C. 提高产品耐用性  D. 承诺不降价<br>正确答案：C（降低耐用性才对）</p>
+                </div>
+                
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#7</span>
+                    <span class="q-title">一级价格歧视对社会福利的影响</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span> <span class="tag tag-重点">重点</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>一级价格歧视（完全价格歧视）：①资源配置效率：产量达到竞争水平（P=MC），无谓损失消失，实现帕累托效率 ②分配效应：消费者剩余被生产者完全攫取，产生分配公平问题 ③总福利：总剩余达到最大（效率最优），但分配严重不均</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>完全价格歧视下，厂商对每个人收他能接受的最高价。结果是：产量和完全竞争一样多（效率最高），但所有好处都被厂商拿走了，消费者一分钱便宜都占不到</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">1. 效率：产量到达P=MC，无谓损失消失→帕累托最优
+2. 分配：全部消费者剩余被生产者攫取
+3. 总福利：总剩余最大，但分配极不公平
+4. 评价：效率上最优，公平上最差</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>一级价格歧视下，市场的产量水平____完全竞争市场的产量水平？<br>A. 高于  B. 等于  C. 低于  D. 无法比较<br>正确答案：B</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 一级歧视的反直觉点：虽然厂商很贪婪，但社会总福利反而最大（因为产量拉满了）</p>
+                </div>
+                
+                </div>
+            </div>
+            
+                </div>
+                <div class="quick-memo">
+                    <div class="memo-header" onclick="toggleSection(this)">
+                        <span>⚡ 考前5分钟必记</span>
+                        <span class="expand-icon">▶</span>
+                    </div>
+                    <div class="section-body" style="display:none;">
+                        <pre style="white-space:pre-wrap;font-family:inherit;">三级歧视: MR₁=MR₂=MC → 解Q₁Q₂
+科斯猜想: 耐用品→预期降价→失垄断利润
+应对: 出租/迭代/承诺不降价
+一级歧视: P=MC产量, 效率最优但分配最差</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chapter-card" data-chapter="ch2" data-stars="⭐⭐⭐">
+            <div class="chapter-header" onclick="toggleChapter(this)" style="border-left: 5px solid #2980b9;">
+                <div class="chapter-title-row">
+                    <span class="ch-stars">⭐⭐⭐</span>
+                    <span class="ch-title">第二章 市场结构与市场势力</span>
+                    <span class="ch-weight">名解+简答大户，约15-20分</span>
+                    <span class="expand-icon">▶</span>
+                </div>
+            </div>
+            <div class="chapter-body" style="display:none;">
+                <div class="prereq-box">🚀 前置30秒：市场结构=一个行业里厂商之间关系的特征。集中度=前几家大公司占了多大份额。垄断势力=公司能定多高的价的能力</div>
+                <div class="questions-list">
+                    
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#1</span>
+                    <span class="q-title">市场结构的测定指标及其优缺点</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span> <span class="tag tag-必考">必考</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>市场结构测定指标：①行业集中度CRn=前n家最大企业市场份额之和，优点计算简单直观，缺点仅反映前n家、n选取主观 ②赫芬达尔-赫希曼指数HHI=各企业市场份额平方和，优点综合反映数量与规模分布，缺点数据要求高 ③洛伦兹曲线=市场份额累计百分比曲线，优点直观展示不均程度，缺点不能反映企业数量 ④基尼系数=洛伦兹曲线与对角线面积之比，优点量化不均程度0~1，缺点不同形状曲线可得相同系数 ⑤熵指数E=Σsi·ln(1/si)，优点对企业赋权更平均，缺点含义不如HHI直观</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>CRn=看前几家有多大（简单但粗糙）
+HHI=把每家份额平方加起来（精细但数据多）
+洛伦兹曲线=画一条弯的线（看着直观）
+基尼系数=线有多弯（数字说话）
+熵指数=另一种算法（数学上好但不好解释）</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">| 指标 | 公式 | 优点 | 缺点 |
+|------|------|------|------|
+| CRn | 前n家份额之和 | 简单直观 | 忽略其余,n主观 |
+| HHI | 份额平方和 | 综合反映 | 数据要求高 |
+| 洛伦兹 | 累计份额曲线 | 直观 | 不能反映数量 |
+| 基尼 | 曲线面积比 | 量化0~1 | 不同形状同系数 |
+| 熵指数 | Σsi·ln(1/si) | 赋权平均 | 含义不直观 |</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>以下哪个指标的计算需要全部企业的市场份额数据？<br>A. CR₄  B. HHI  C. 两者都需要  D. 都不需要<br>正确答案：B</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ CRn和HHI的区别：CRn只看前几家不看后面的；HHI所有企业都算，对大企业赋权更大</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#2</span>
+                    <span class="q-title">规模经济与市场结构的关系</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>规模经济指随产量增加，平均成本下降的现象。规模经济越显著，企业的最佳规模越大，能容纳的企业数量越少，市场集中度越高。若最小有效规模（MES）占市场总需求的比例大，则形成自然垄断或寡头结构。反之，若规模不经济，则市场趋向分散竞争</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>规模经济=做得越多越便宜。如果必须做很大才能便宜（比如汽车制造），那市场上就容不下几家小公司，集中度就高。如果做多做少成本差不多（比如理发店），那就可以有很多小店</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">规模经济显著→最佳规模大→能容纳的企业少→集中度高→可能形成自然垄断
+规模不经济→最佳规模小→企业数量多→市场分散</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>最小有效规模(MES)占市场总需求比例越大，市场结构越倾向于？<br>A. 完全竞争  B. 垄断竞争  C. 寡头/垄断  D. 无法判断<br>正确答案：C</p>
+                </div>
+                
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#3</span>
+                    <span class="q-title">影响市场结构的因素</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>影响市场结构的因素：①规模经济水平：决定最佳企业规模与市场容量之比 ②进入壁垒：资金、技术、政策、品牌等壁垒越高，在位企业越集中 ③产品差异化：差异化程度高，细分市场多，集中度可高可低 ④政府政策：反垄断法、产业政策、准入许可等 ⑤市场需求变化：需求增长吸引新进入者，降低集中度 ⑥企业并购行为：横向并购直接提高集中度</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>六个因素可以这么记：「规模+壁垒+差异+政策+需求+并购」。前三个是市场自己的力量，后两个是外部影响</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">1. 规模经济水平 2. 进入壁垒 3. 产品差异化 4. 政府政策 5. 市场需求变化 6. 企业并购行为</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>以下哪个因素会降低市场集中度？<br>A. 横向并购  B. 进入壁垒提高  C. 市场需求快速增长  D. 规模经济增强<br>正确答案：C</p>
+                </div>
+                
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#4</span>
+                    <span class="q-title">如何衡量垄断势力？垄断的社会福利损失</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span> <span class="tag tag-⭐⭐⭐核心">⭐⭐⭐核心</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>垄断势力的衡量指标：①勒纳指数L=(P-MC)/P，0<L<1，越大垄断势力越强 ②贝恩指数：经济利润/投资额 ③市场集中度指标：CRn、HHI等。垄断的社会福利损失：①哈伯格三角形（分配效率损失）：垄断产量低于竞争产量，消失的消费者剩余 ②X-非效率：缺乏竞争导致成本控制松懈，实际成本高于最低成本 ③寻租成本：为维持垄断地位而花费的资源 ④动态效率损失：缺乏竞争可能减慢创新</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>勒纳指数=价格偏离成本的程度。一瓶水景区卖10块成本2块：L=(10-2)/10=0.8→垄断势力很强
+垄断的坏处：造得少了(哈伯格)、成本高了(X-非效率)、钱花在走关系上了(寻租)、创新慢了(动态损失)</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">垄断势力指标：
+• 勒纳指数 L=(P-MC)/P（核心指标）
+• 贝恩指数 = 经济利润/投资额
+• CRn、HHI等
+
+垄断福利损失：
+1. 哈伯格三角形：产量减少导致的社会福利净损失
+2. X-非效率：无竞争压力→成本高
+3. 寻租成本：花钱维护垄断地位
+4. 动态效率损失：创新动力不足</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>勒纳指数L=0表示？<br>A. 完全垄断  B. 完全竞争  C. 寡头垄断  D. 垄断竞争<br>正确答案：B（P=MC时L=0，完全竞争的特征）</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 勒纳指数取值范围0~1，但现实中完全竞争(L=0)和完全垄断(L≈1)都是极端情况</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#5</span>
+                    <span class="q-title">影响我国钢铁产业市场集中度变化的主要因素</span>
+                    <span class="q-tags"><span class="tag tag-案例">案例</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>①产业政策推动：国家鼓励兼并重组（宝钢合并武钢成立中国宝武），淘汰落后产能 ②供给侧改革：2016年以来去产能政策提高了前十大钢企的份额 ③环保约束：环保成本上升，小钢厂被迫退出 ④市场需求变化：经济增速放缓，需求从粗放转向高质量 ⑤技术进步：大型高炉、连铸连轧等技术使规模经济更显著</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>钢铁集中的原因：国家让大厂合并（宝武）、环保搞死小厂、技术让大厂更便宜。结果是：大厂越来越大，小厂越来越少</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">1. 产业政策：并购重组+淘汰落后
+2. 供给侧改革：去产能
+3. 环保约束：小钢厂退出
+4. 需求变化：从量到质
+5. 技术进步：规模经济更明显</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>以下哪个因素对我国钢铁产业集中度提高的影响最小？<br>A. 环保约束  B. 技术进步  C. 出口退税  D. 兼并重组政策<br>正确答案：C</p>
+                </div>
+                
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#6</span>
+                    <span class="q-title">中国汽车产业集中度与利润率实证</span>
+                    <span class="q-tags"><span class="tag tag-案例">案例</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>中国汽车产业集中度(CR₃)从2005年约45%提升至近年约55%，但远低于发达国家(美国CR₃约90%)。原因：中国市场广阔、地方政府保护、合资品牌格局复杂。利润率：高端品牌>合资品牌>自主品牌</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>汽车集中度比发达国家低很多——因为中国市场太大、地方保护严重、合资企业太多。但趋势是越来越集中的</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">CR₃从45%→55%，原因：市场大、地方保护、合资复杂
+利润率：高端>合资>自主</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#7</span>
+                    <span class="q-title">垄断定价计算</span>
+                    <span class="q-tags"><span class="tag tag-计算">计算</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>垄断定价原则：MR=MC。垄断价格高于边际成本，差幅由需求弹性决定。需求弹性越小→垄断加价幅度越大</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>垄断者定价就一条原则：MR=MC。跟竞争市场不同，垄断价格不是由市场决定的，是厂商自己算出来的</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">垄断定价步骤：
+1. 从需求函数求反需求 P = a - bQ
+2. 求总收益 TR = P×Q = aQ - bQ²
+3. 求边际收益 MR = dTR/dQ = a - 2bQ
+4. 令 MR = MC 解出 Q*
+5. 代入反需求得 P*
+6. 利润 π = P*×Q* - TC</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>垄断厂商的定价原则是？<br>A. P=MC  B. MR=MC  C. P=AC  D. MR=AR<br>正确答案：B</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 特别注意：垄断者不是在需求曲线上任意选点，是MR=MC的交点决定Q，再在需求曲线上找对应的P</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#8</span>
+                    <span class="q-title">滴滴并购案分析</span>
+                    <span class="q-tags"><span class="tag tag-案例">案例</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>滴滴与快的合并→收购优步中国，大幅提高市场集中度(CR₂≈100%)。引发反垄断关注：是否形成垄断地位、是否滥用市场支配地位(大数据杀熟、抽成比例等)</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>滴滴从竞争走向垄断的过程：先和快的合并，再买下优步中国，最后市场上就剩它一家了。然后就出现了大数据杀熟、抽成高等问题</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">滴滴并购→市场高度集中→引发反垄断关注
+主要争议点：市场支配地位滥用(大数据杀熟、高抽成)</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+                </div>
+                <div class="quick-memo">
+                    <div class="memo-header" onclick="toggleSection(this)">
+                        <span>⚡ 考前5分钟必记</span>
+                        <span class="expand-icon">▶</span>
+                    </div>
+                    <div class="section-body" style="display:none;">
+                        <pre style="white-space:pre-wrap;font-family:inherit;">CRn=前n家份额 HHI=份额平方和 勒纳指数L=(P-MC)/P
+垄断损失: 哈伯格+X-非效率+寻租+动态
+影响市场结构: 规模+壁垒+差异+政策+需求+并购</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chapter-card" data-chapter="ch4" data-stars="⭐⭐">
+            <div class="chapter-header" onclick="toggleChapter(this)" style="border-left: 5px solid #27ae60;">
+                <div class="chapter-title-row">
+                    <span class="ch-stars">⭐⭐</span>
+                    <span class="ch-title">第四章 产品差异化</span>
+                    <span class="ch-weight">约12分（简答+名解）</span>
+                    <span class="expand-icon">▶</span>
+                </div>
+            </div>
+            <div class="chapter-body" style="display:none;">
+                <div class="prereq-box">🚀 前置30秒：产品差异化=让消费者觉得你的产品不一样。横向=口味偏好（喜欢甜的vs咸的），纵向=质量差异（好的vs差的）</div>
+                <div class="questions-list">
+                    
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#1</span>
+                    <span class="q-title">横向差异化与纵向差异化的概念与区别</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span> <span class="tag tag-重点">重点</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>横向差异化：在相同价格下，不同消费者偏好不同品种/特征（如颜色、口味），没有绝对好坏之分。纵向差异化：所有消费者对产品特征的评价方向一致，在相同价格下都会选择质量更高的产品</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>横向=萝卜青菜各有所爱（可口vs百事，有人喜欢这个有人喜欢那个）
+纵向=大家都想要好的（奔驰vs奥拓，没人觉得奥拓更好，除非它更便宜）</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">横向：无绝对好坏，消费者偏好不同（颜色、口味、设计）
+纵向：有绝对好坏，大家都想要更好的（质量、性能、耐用性）
+
+区别：横向差异化下，价格相同消费者选择不同；纵向差异化下，价格相同所有人都选好的那个</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>手机的屏幕尺寸差异属于哪种差异化？<br>A. 横向  B. 纵向  C. 两者都是  D. 两者都不是<br>正确答案：A（有人喜欢小屏有人喜欢大屏，没有绝对好坏）</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 区分关键：同样价格下，如果消费者都选同一个→纵向；如果各有所爱→横向</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#2</span>
+                    <span class="q-title">霍特林模型如何度量产品差异</span>
+                    <span class="q-tags"><span class="tag tag-模型">模型</span> <span class="tag tag-核心">核心</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>霍特林模型：消费者均匀分布在线性城市中，厂商选择位置（产品特征），消费者承担运输成本（偏好不匹配的成本）。产品差异越大→消费者的运输成本越高→厂商的垄断势力越强。均衡时两厂商倾向于选择最大差异化（一个在左端一个在右端）以减少价格竞争</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>想象一条街，你在一头开了一家店，我在另一头开了一家。你卖咖啡我卖茶。消费者住在街中间，来你家要走路（运输成本）。走得越远越不愿意来。所以我们故意分得开开的，这样各自在自家附近有垄断地位</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">霍特林模型要点：
+• 线性城市：消费者均匀分布在[0,1]区间
+• 厂商选择位置（产品特征定位）
+• 运输成本=消费者偏好不匹配的成本
+• 产品差异越大→运输成本越高→价格竞争越弱→垄断利润越高
+• 均衡：最大差异化原则（分列两端）</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>根据霍特林模型，两家厂商在均衡时会选择？<br>A. 在同一位置  B. 分列两端（最大差异化）  C. 随机分布  D. 都在中间<br>正确答案：B</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 为什么不在同一个位置？因为如果产品完全一样→只能打价格战→利润为零。所以差异化是避免价格竞争的手段</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#3</span>
+                    <span class="q-title">产品差异化的好处和实施方法</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>好处：①减少价格竞争，创造市场势力 ②满足消费者多样化需求 ③形成品牌忠诚和进入壁垒 ④增加消费者剩余（更多选择）
+实施方法：①物理差异化（设计、功能、质量）②服务差异化（售后、体验）③品牌形象（广告、包装）④渠道差异化（销售方式）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>好处一句话：把产品做不一样了，就不用和对手打价格战了。怎么做到不一样？可以是东西本身不一样、服务不一样、广告打得让人感觉不一样</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">好处：减少价格竞争、满足多样化需求、形成进入壁垒、增加消费者剩余
+方法：物理差异、服务差异、品牌形象、渠道差异</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#4</span>
+                    <span class="q-title">最大化差异化原则</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>最大化差异化原则：在产品差异化竞争中，厂商倾向于使其产品特征尽可能远离竞争对手，以减少价格竞争、减轻'自相残杀'效应。霍特林模型证明，当运输成本为二次时，两厂商会在两端定位</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>越不像对手→越不用和对手比价格→越好赚钱。所以超市不会开在对门，奶茶店不会隔壁再开一家同口味的</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">最大化差异化原则：
+• 动机：减少价格竞争
+• 结果：产品特征尽可能远离对手
+• 模型：霍特林二次运输成本→厂商分列两端</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#5</span>
+                    <span class="q-title">二次运输成本的霍特林模型</span>
+                    <span class="q-tags"><span class="tag tag-模型">模型</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>二次运输成本：消费者效用损失与距离的平方成正比（即偏好的不匹配成本以递增速度增长）。此时，价格竞争减弱，厂商更有动力加大差异化，均衡结果为最大差异化（两端定位）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>如果走路去你店里的痛苦是平方增长的（走1步不累，走10步超级累），那消费者就更不愿意走远路，厂商在自家附近就更有垄断地位</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">二次运输成本→偏好不匹配成本递增→价格竞争更弱→最大差异化</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+                </div>
+                <div class="quick-memo">
+                    <div class="memo-header" onclick="toggleSection(this)">
+                        <span>⚡ 考前5分钟必记</span>
+                        <span class="expand-icon">▶</span>
+                    </div>
+                    <div class="section-body" style="display:none;">
+                        <pre style="white-space:pre-wrap;font-family:inherit;">横向=各有所爱 纵向=大家都爱好的
+霍特林：厂商分两端=>减少价格竞争
+产品差异好处：少竞争+多选择+建壁垒</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chapter-card" data-chapter="ch5" data-stars="⭐">
+            <div class="chapter-header" onclick="toggleChapter(this)" style="border-left: 5px solid #8e44ad;">
+                <div class="chapter-title-row">
+                    <span class="ch-stars">⭐</span>
+                    <span class="ch-title">第五章 企业中的广告行为</span>
+                    <span class="ch-weight">约8分（精简）</span>
+                    <span class="expand-icon">▶</span>
+                </div>
+            </div>
+            <div class="chapter-body" style="display:none;">
+                <div class="prereq-box">🚀 前置30秒：广告分两种——告诉你产品存在(信息型)和让你觉得产品好(说服型)。广告花多少钱取决于市场结构和产品特性</div>
+                <div class="questions-list">
+                    
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#1</span>
+                    <span class="q-title">说服型广告 vs 信息型广告</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>说服型广告：旨在改变消费者偏好、建立品牌忠诚，使需求曲线右移且更缺乏弹性（如奢侈品广告）。信息型广告：向消费者传递产品存在、价格、特性等信息，帮助消费者做出知情选择（如超市折扣传单）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>说服型=「你需要这个！」（改变你的想法）
+信息型=「这里有这个，价格是XX」（告诉你事实）</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">说服型：改变偏好→需求右移且弹性降低
+信息型：传递信息→帮助知情选择</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>奢侈品的电视广告主要属于哪种类型？<br>A. 信息型  B. 说服型  C. 两者都不是  D. 两者都是<br>正确答案：B</p>
+                </div>
+                
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#2</span>
+                    <span class="q-title">合作型广告 vs 进攻型广告</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>合作型广告：行业内多家企业联合推广，扩大整个市场的需求（如'喝牛奶有益健康'的行业广告）。进攻型广告：个别企业为争夺市场份额而做的广告，旨在从竞争对手处抢夺消费者</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>合作型=整个行业一起把蛋糕做大（牛奶协会说「多喝牛奶」）
+进攻型=我从你手里抢蛋糕（蒙牛说「喝蒙牛别喝伊利」）</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">合作型：扩大市场需求→行业共同受益
+进攻型：争夺市场份额→零和博弈</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#3</span>
+                    <span class="q-title">市场结构与广告强度的关系</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>①完全竞争市场：无需广告（产品同质，单个厂商无法影响价格） ②垄断竞争市场：广告强度最大（差异化竞争的主要手段） ③寡头市场：广告强度取决于产品差异化程度和对手反应 ④垄断市场：广告强度较低（缺乏竞争压力）
+多夫曼-斯坦纳条件：广告强度 广告支出/销售额 = -(广告需求弹性/价格需求弹性)</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>竞争最激烈的市场（垄断竞争）广告打得最凶——因为大家都在想办法让自己看起来不一样。完全竞争和垄断反而广告少——一个不需要，一个没必要</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">广告强度排序：垄断竞争 > 寡头 > 垄断 > 完全竞争
+多夫曼-斯坦纳：广告支出/销售额 = -(广告需求弹性/价格需求弹性)</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>以下哪种市场结构的广告强度通常最大？<br>A. 完全竞争  B. 垄断竞争  C. 寡头垄断  D. 完全垄断<br>正确答案：B</p>
+                </div>
+                
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#4</span>
+                    <span class="q-title">广告的作用及对社会福利的影响</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>积极作用：①传递产品信息，降低搜索成本 ②促进竞争，降低价格 ③支持媒体（免费内容的经济基础）④信号作用（高广告投入=产品质量有保障）。消极作用：①操纵偏好，制造虚假差异 ②增加进入壁垒 ③造成资源浪费 ④过度消费</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>广告好不好？双刃剑。好的方面：让你知道有什么可以买、谁在打折。坏的方面：让你买你不需要的东西、让小公司做不起广告</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">积极：传递信息、促进竞争、支持媒体、质量信号
+消极：操纵偏好、增加壁垒、资源浪费、过度消费</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#5</span>
+                    <span class="q-title">广告计算题</span>
+                    <span class="q-tags"><span class="tag tag-计算">计算</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>广告支出最优化：广告的边际收益=广告的边际成本（1元广告带来的利润增加=1元）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>广告不是越打越好——花出去的每一块钱广告费，至少要赚回一块钱才值得继续打</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">最优广告条件：广告的边际收益 = 1（广告的边际成本）
+或：广告强度 = -(广告需求弹性/价格需求弹性)</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#6</span>
+                    <span class="q-title">广告支出最优化</span>
+                    <span class="q-tags"><span class="tag tag-计算">计算</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>企业最优广告支出满足：广告边际收益=广告边际成本。多夫曼-斯坦纳条件给出了最优广告-销售比率的计算公式</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>花在广告上的最后一块钱，带来的利润增量应该刚好等于一块钱。如果大于1，说明广告打少了；小于1，打多了</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">最优条件：广告的MR=广告的MC=1
+多夫曼-斯坦纳条件：A/S = ηA/ηP
+(A=广告支出, S=销售额, ηA=广告需求弹性, ηP=价格需求弹性)</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+                </div>
+                <div class="quick-memo">
+                    <div class="memo-header" onclick="toggleSection(this)">
+                        <span>⚡ 考前5分钟必记</span>
+                        <span class="expand-icon">▶</span>
+                    </div>
+                    <div class="section-body" style="display:none;">
+                        <pre style="white-space:pre-wrap;font-family:inherit;">说服型：改偏好  信息型：传事实
+广告强度：垄断竞争>寡头>垄断>完全竞争
+最优广告：MR广告=1</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chapter-card" data-chapter="ch6" data-stars="⭐⭐">
+            <div class="chapter-header" onclick="toggleChapter(this)" style="border-left: 5px solid #d35400;">
+                <div class="chapter-title-row">
+                    <span class="ch-stars">⭐⭐</span>
+                    <span class="ch-title">第六章 企业进入和退出</span>
+                    <span class="ch-weight">约10分（简答+计算）</span>
+                    <span class="expand-icon">▶</span>
+                </div>
+            </div>
+            <div class="chapter-body" style="display:none;">
+                <div class="prereq-box">🚀 前置30秒：进入=新公司来抢生意。在位厂商不想让新公司进来怎么办？两种方法：降价(限制性定价)和发狠话(掠夺性定价)</div>
+                <div class="questions-list">
+                    
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#1</span>
+                    <span class="q-title">限制性定价 vs 掠夺性定价</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span> <span class="tag tag-重点">重点</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>限制性定价：在位厂商在潜在进入者进入之前，将价格定在低于垄断价格的水平，使进入者预期进入后无利可图，从而阻止进入。掠夺性定价：在位企业将价格暂时降到成本以下，将已进入的对手驱逐出市场，之后恢复正常定价</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>限制性定价=「别进来，进来了也赚不到钱」（吓阻潜在进入者）
+掠夺性定价=「进来了是吧？我先亏本把你赶出去！」（消灭已进入者）
+区别：一个在进入前，一个在进入后</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">限制性定价：进入前→降价→阻止进入
+掠夺性定价：进入后→降到成本以下→驱赶对手
+
+区别：时机不同（前/后）、目的不同（阻止/驱逐）</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>在位企业将价格定在低于垄断价格但高于成本的水平以阻止进入，这属于？<br>A. 掠夺性定价  B. 限制性定价  C. 价格歧视  D. 捆绑销售<br>正确答案：B</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 限制性定价≠低价倾销。限制性定价是在成本之上的（只是比垄断价低），掠夺性定价是降到成本之下的</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#2</span>
+                    <span class="q-title">贝恩模型（静态限制性定价模型）及局限性</span>
+                    <span class="q-tags"><span class="tag tag-模型">模型</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>贝恩模型：在位厂商通过设定低于垄断价格的价格，降低进入者的预期利润，阻止进入。局限性：①假设进入是一次性的（实际是连续的）②假设在位者不能改变价格（实际可以）③不考虑进入者的策略性行为 ④假设信息完全</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>贝恩说：你把价格降一点，让新来的人觉得「没赚头，不来了」。但现实比这复杂——你降了价自己利润也少了，而且新来的人可能会等你的价格上去以后再进来</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">贝恩模型：价格低于垄断价→降低进入者预期利润→阻止进入
+局限性：一次进入假设、价格不变假设、无策略互动、信息完全
+
+现代发展：动态模型（考虑了多期博弈）、信息不对称模型</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#3</span>
+                    <span class="q-title">提高竞争对手成本的方法</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>①控制关键资源（原材料、技术专利、销售渠道）②游说政府提高行业标准（环保、安全法规）③垂直整合控制上下游 ④提高消费者转换成本 ⑤掠夺性创新（专利囤积）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>与其降价抢市场，不如让对手的成本变高。比如控制原料、让政府出更严格的法规（对手达不到）、让消费者换你的产品很麻烦</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">1. 控制关键资源（原料、专利、渠道）
+2. 游说提高行业标准
+3. 垂直整合（控制上下游）
+4. 提高转换成本
+5. 掠夺性创新（专利囤积）</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#4</span>
+                    <span class="q-title">限制性定价与进入门槛（固定费用）的关系</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>固定进入费用越高，潜在进入者越难进入，在位厂商的限制性定价压力越小，可以维持更高的价格。固定进入费用越低，进入越容易，在位厂商必须用更低的限制性价格来阻止进入</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>开一家新店需要花的固定成本（加盟费、设备、装修）越高，想进来的人就越少。如果你发现开店要花1000万，现在的老板价格贵点你也忍了</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">固定进入费用↑ → 进入难度↑ → 在位者可维持更高价格
+固定进入费用↓ → 进入更容易 → 在位者必须定更低价格</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#5</span>
+                    <span class="q-title">限制性定价计算</span>
+                    <span class="q-tags"><span class="tag tag-计算">计算</span> <span class="tag tag-重点">重点</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>限制性定价的计算：在位厂商选择阻止进入的价格水平，使得进入者进入后的利润≤0（进入成本）。通常需要比较进入前后的利润</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>算一下：把价格降到什么水平，新来的人算完账觉得没赚头就不来了。自己虽然有损失，但比让人进来抢市场损失小</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">限制性定价计算步骤：
+1. 计算垄断价格和利润
+2. 考虑进入者进入后的市场均衡（通常古诺竞争）
+3. 确定阻止进入的价格（使进入者利润≤固定进入费用）
+4. 比较限制性定价利润 vs 容纳进入的利润，选较高的</pre>
+                        </div>
+                    </div>
+                    
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 限制性定价的关键是「可信性」：新来的人必须相信你会一直维持低价，而不是等他不进来了你就涨价</p>
+                </div>
+                
+                </div>
+            </div>
+            
+                </div>
+                <div class="quick-memo">
+                    <div class="memo-header" onclick="toggleSection(this)">
+                        <span>⚡ 考前5分钟必记</span>
+                        <span class="expand-icon">▶</span>
+                    </div>
+                    <div class="section-body" style="display:none;">
+                        <pre style="white-space:pre-wrap;font-family:inherit;">限制性定价：进入前降价→阻止进入
+掠夺性定价：进入后降价→驱逐对手
+固定进入费↑→在位者可定更高价</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chapter-card" data-chapter="ch7" data-stars="⭐⭐">
+            <div class="chapter-header" onclick="toggleChapter(this)" style="border-left: 5px solid #16a085;">
+                <div class="chapter-title-row">
+                    <span class="ch-stars">⭐⭐</span>
+                    <span class="ch-title">第七章 企业并购行为</span>
+                    <span class="ch-weight">约10分（简答+名解+计算）</span>
+                    <span class="expand-icon">▶</span>
+                </div>
+            </div>
+            <div class="chapter-body" style="display:none;">
+                <div class="prereq-box">🚀 前置30秒：并购=一家公司买另一家。横向=买同行（美团买大众点评），纵向=买上下游（买你的供应商或经销商），混合=买不相关的</div>
+                <div class="questions-list">
+                    
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#1</span>
+                    <span class="q-title">横向、纵向、混合并购的区别</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>横向并购：同一行业、生产同类产品的企业间并购（如两个汽车制造商合并），直接影响市场集中度。纵向并购：上下游企业间的并购（如制造商收购供应商），影响交易成本和产业链控制。混合并购：不同行业、无直接投入产出关系的企业间并购（多元化经营）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>横向=竞争对手变一家（美团+大众点评）→容易形成垄断
+纵向=把你的供应商或经销商买了（苹果买芯片设计公司）→控制产业链
+混合=买了不相关的业务（烟草公司卖饮料）→分散风险</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">横向：同行合并→集中度↑→反垄断关注最大
+纵向：上下游合并→交易成本↓→产业链控制
+混合：跨行业并购→多元化经营→风险分散</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>两家石油公司合并属于哪种并购？<br>A. 横向  B. 纵向  C. 混合  D. 都不是<br>正确答案：A</p>
+                </div>
+                
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#2</span>
+                    <span class="q-title">并购悖论及破解</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span> <span class="tag tag-重点">重点</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>并购悖论：如果横向并购不改变合谋条件（如市场集中度），为什么企业还要并购？或者说，并购是否有利可图取决于并购后的市场条件。破解：并购可以通过以下方式获利——①提高市场势力（涨价）②获得协同效应（降低成本）③消除产能过剩 ④获取市场信息</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>悖论就是：如果并购只是为了涨价，那为什么大家不自己涨价？真正的答案：并购能让你做很多自己做不到的事——降低成本、共享技术、消灭过度竞争</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">并购悖论：如果并购的好处只是涨价→为什么大家不自己涨？
+破解：并购的真正价值
+1. 提高市场势力→涨价能力
+2. 协同效应→1+1>2
+3. 消除产能过剩
+4. 信息共享</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#3</span>
+                    <span class="q-title">纵向并购对社会福利的影响</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>正面影响：①消除双重加价（上下游各自加价→总价格过高）②降低交易成本 ③保证投入品质量和供应 ④促进专用性投资。负面影响：①提高进入壁垒（控制关键资源）②可能促进合谋 ③市场圈定效应（排挤竞争对手）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>纵向并购最大的好处是消除「双重加价」——上游加一次价，下游再加一次，消费者被加两次。合并了以后只要加一次就够了。坏处是：别人想买这个原料买不到了（因为你把供应商买了）</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">积极：消除双重加价、降交易成本、保质量供应、促专用投资
+消极：提高进入壁垒、促进合谋、市场圈定</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>纵向并购最主要的社会福利改善来自于？<br>A. 提高市场集中度  B. 消除双重加价  C. 扩大市场份额  D. 增加广告效率<br>正确答案：B</p>
+                </div>
+                
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#4</span>
+                    <span class="q-title">双重加价计算题</span>
+                    <span class="q-tags"><span class="tag tag-计算">计算</span> <span class="tag tag-核心">核心</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>双重加价：上游垄断厂商加价一次，下游垄断厂商再加价一次，导致最终价格过高、产量过低。纵向一体化可以消除双重加价，降低最终价格、增加产量、提高社会福利</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>一个垄断者卖给另一个垄断者，每个都加一次价→消费者被剥两层皮。合并后只加一次价→价格降了、产量多了、大家都受益</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">双重加价问题：
+上游垄断→定批发价w→下游垄断→定零售价P
+上游加价：w>MC
+下游加价：P>w
+→最终价格P远高于MC→双重加价
+
+纵向一体化后：统一决策→定P'<P→产量↑→社会总福利↑</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>双重加价问题的最佳解决方案是什么？<br>A. 政府限价  B. 纵向一体化  C. 价格歧视  D. 广告竞争<br>正确答案：B</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 双重加价的反直觉点：一体化后价格反而会降低（因为不用加两次价了），所以对消费者也是好事</p>
+                </div>
+                
+                </div>
+            </div>
+            
+                </div>
+                <div class="quick-memo">
+                    <div class="memo-header" onclick="toggleSection(this)">
+                        <span>⚡ 考前5分钟必记</span>
+                        <span class="expand-icon">▶</span>
+                    </div>
+                    <div class="section-body" style="display:none;">
+                        <pre style="white-space:pre-wrap;font-family:inherit;">横向=同行 纵向=上下游 混合=不相关
+并购悖论：不止为涨价，更是协同效应
+双重加价：上下游各加一次→纵向一体化→消除
+双重加价→价格降低→福利增加</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chapter-card" data-chapter="ch8" data-stars="⭐">
+            <div class="chapter-header" onclick="toggleChapter(this)" style="border-left: 5px solid #c0392b;">
+                <div class="chapter-title-row">
+                    <span class="ch-stars">⭐</span>
+                    <span class="ch-title">第八章 反垄断理论与实践</span>
+                    <span class="ch-weight">约8分（精简）</span>
+                    <span class="expand-icon">▶</span>
+                </div>
+            </div>
+            <div class="chapter-body" style="display:none;">
+                <div class="prereq-box">🚀 前置30秒：反垄断=政府管大公司，防止它们滥用市场力量。三种垄断：自然垄断（自来水公司，一个比多个便宜）、行政垄断（铁路牌照，政府不给别人发）、经济垄断（微软，自己做大）</div>
+                <div class="questions-list">
+                    
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#1</span>
+                    <span class="q-title">垄断的福利损失有哪些</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>①哈伯格三角形（分配效率损失）：垄断产量低于竞争产量，消费者剩余净损失 ②X-非效率：缺乏竞争导致成本控制松懈 ③寻租成本：为维持垄断地位而花费的资源 ④动态效率损失：缺乏竞争压力减慢创新</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>垄断的四个坏处和Ch2第4题一致——造少了、成本高了、钱花在走关系上了、创新慢了</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">四个损失：
+1. 哈伯格三角形：产量减少的福利净损失
+2. X-非效率：成本控制松懈
+3. 寻租成本：维持垄断的耗费
+4. 动态效率损失：创新动力不足</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#2</span>
+                    <span class="q-title">自然垄断、行政垄断与经济垄断的区别</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>自然垄断：由一个企业生产比多个企业更有效率（如水、电、气行业），源于规模经济或范围经济。行政垄断：政府通过法律法规、行政许可等行政手段造成的垄断（如烟草专卖）。经济垄断：企业通过市场竞争、技术创新、并购等经济行为形成的垄断（如微软操作系统）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>自然垄断=「一家做比多家便宜」→电网、自来水
+行政垄断=「政府不让别人做」→烟草、铁路
+经济垄断=「我自己做大的」→微信、百度搜索</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">自然垄断：源于规模经济，一个比多个效率高
+行政垄断：源于政府管制，制度性垄断
+经济垄断：源于市场竞争和企业行为</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>以下哪个是自然垄断的典型例子？<br>A. 微信  B. 自来水公司  C. 烟草专卖  D. 中国石油<br>正确答案：B</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 自然垄断不是垄断者坏，是市场特性决定了只有一个最有效率</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#3</span>
+                    <span class="q-title">反垄断针对的对象</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>反垄断主要针对三类行为：①垄断协议（卡特尔、价格合谋）②滥用市场支配地位（掠夺性定价、拒绝交易、搭售）③经营者集中（具有排除、限制竞争效果的并购）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>反垄断打三种：串通涨价（合谋）、欺负人（滥用地位）、买太多（集中过度）</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">1. 垄断协议：卡特尔、价格合谋
+2. 滥用市场支配地位：掠夺性定价、拒绝交易、搭售
+3. 经营者集中：限制竞争的并购</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#4</span>
+                    <span class="q-title">反垄断成本与收益——以微软案为例</span>
+                    <span class="q-tags"><span class="tag tag-案例">案例</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>微软案：美国司法部指控微软利用Windows垄断地位捆绑IE浏览器排挤网景。收益：促进竞争、保护创新、确立反垄断先例。成本：法律费用高昂（耗时数年）、可能阻碍了微软的创新速度</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>微软案告诉两件事：反垄断有用（网景被救了？但最后也死了），但代价很大（打了几年官司，花了几亿律师费）</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">微软案争议：
+控方：捆绑IE排挤竞争对手→滥用垄断地位
+辩方：产品集成创新→消费者受益
+结果：和解+拆分未执行→反垄断边界争议</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#5</span>
+                    <span class="q-title">中外反垄断实践与'马歇尔冲突'</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>马歇尔冲突：规模经济与竞争活力之间的矛盾——大规模生产有利于降低成本（效率），但可能导致垄断（损害竞争）。反垄断政策的核心就是在这两者之间找到平衡。不同国家侧重点不同：美国更注重保护竞争过程，欧盟更注重市场结构，中国倾向兼顾产业发展</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>马歇尔冲突=大的好还是多的好？一个超级大厂成本低但没竞争，很多小厂有竞争但成本高。反垄断就是在这两个之间选平衡点</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">马歇尔冲突：规模经济（效率）vs 竞争活力（公平）
+各国侧重：
+• 美国：保护竞争过程
+• 欧盟：关注市场结构
+• 中国：兼顾产业发展</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#6</span>
+                    <span class="q-title">产业组织政策的目标</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>产业组织政策的目标：①维持市场有效竞争 ②保护消费者福利 ③促进技术创新和动态效率 ④兼顾规模经济与竞争活力（解决马歇尔冲突）⑤实现资源配置效率</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>产业政策的目标说白了就是：让市场既有大企业的效率，又有小企业的活力，消费者不受欺负，创新不停步</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">1. 维持有效竞争
+2. 保护消费者福利
+3. 促进技术创新
+4. 兼顾规模经济与竞争活力
+5. 实现资源配置效率</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+                </div>
+                <div class="quick-memo">
+                    <div class="memo-header" onclick="toggleSection(this)">
+                        <span>⚡ 考前5分钟必记</span>
+                        <span class="expand-icon">▶</span>
+                    </div>
+                    <div class="section-body" style="display:none;">
+                        <pre style="white-space:pre-wrap;font-family:inherit;">自然=一个做最有效率  行政=政府不让进  经济=市场做大的
+反垄断打: 合谋+滥用地位+过度集中
+马歇尔冲突: 规模经济 vs 竞争活力</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chapter-card" data-chapter="ch9" data-stars="⭐">
+            <div class="chapter-header" onclick="toggleChapter(this)" style="border-left: 5px solid #7f8c8d;">
+                <div class="chapter-title-row">
+                    <span class="ch-stars">⭐</span>
+                    <span class="ch-title">第九章 产业结构与政策</span>
+                    <span class="ch-weight">约7分（最精简）</span>
+                    <span class="expand-icon">▶</span>
+                </div>
+            </div>
+            <div class="chapter-body" style="display:none;">
+                <div class="prereq-box">🚀 前置30秒：产业结构=不同产业的比重关系。比如农业占比越来越小、服务业越来越大。霍夫曼系数=消费资料工业/生产资料工业，数字越小说明重工业越发达</div>
+                <div class="questions-list">
+                    
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#1</span>
+                    <span class="q-title">产业结构演进的一般规律</span>
+                    <span class="q-tags"><span class="tag tag-简答">简答</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>配第-克拉克定理：随着经济发展，劳动力先从第一产业（农业）流向第二产业（工业），再从第二产业流向第三产业（服务业）。库兹涅茨法则：农业部门产值和劳动力比重持续下降，工业部门先升后稳，服务业持续上升</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>经济发展的规律：种地→开工厂→做服务。越发达的国家，服务业占比越大，农业占比越小。美国服务业占80%，农业占不到2%</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">配第-克拉克：劳动力从一产→二产→三产转移
+库兹涅茨：农业↓ 工业↑后→ 服务业↑
+工业化阶段：前工业化→工业化初期→中期→后期→后工业化</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#2</span>
+                    <span class="q-title">主导产业及选择基准</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>主导产业：在产业结构中处于支配地位、对经济增长起主要带动作用的产业。选择基准：①产业关联度高（前向/后向/旁侧效应强）②需求收入弹性大 ③生产率上升快 ④就业吸纳能力强 ⑤可持续/绿色化（新加入的绿色基准）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>主导产业=火车头产业。国家选几个产业来重点扶持，标准是：能带动一堆产业（关联度高）、大家有钱了会多买（收入弹性大）、技术进步快、能消化就业</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">选择基准：
+1. 关联效应（赫希曼基准）
+2. 需求收入弹性大
+3. 生产率上升快
+4. 就业吸纳强
+5. 绿色可持续</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#3</span>
+                    <span class="q-title">产业结构合理化与高度化</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>产业结构合理化：各产业之间的协调程度，包括产业间比例关系、关联程度、供给与需求的适应。产业结构高度化：产业结构从低水平向高水平的发展过程，包括从劳动密集→资本密集→技术/知识密集的转变</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>合理化=产业之间比例要协调（不能钢铁太多服务业太少）
+高度化=产业要升级（从做衣服到做芯片）
+合理化是基础，高度化是方向</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">合理化：产业间协调（比例合理、关联紧密、供需适应）
+高度化：产业升级（劳动密集→资本密集→技术密集）
+两者关系：合理化是高度化的基础</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#4</span>
+                    <span class="q-title">霍夫曼系数与霍夫曼定律</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span> <span class="tag tag-重点">重点</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>霍夫曼系数=消费资料工业净产值/生产资料工业净产值。霍夫曼定律：随着工业化推进，霍夫曼系数不断下降。霍夫曼系数>1（工业化初期，消费资料工业主导）→ 霍夫曼系数≈1（工业化中期）→ 霍夫曼系数<1（工业化后期，生产资料工业主导）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>霍夫曼系数=轻工业/重工业。开工厂初期：先做衣服鞋子这些消费品（系数>1）。后来：要做机器设备这些生产工具（系数<1）。系数从大到小→说明国家在工业化</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">霍夫曼系数 = 消费资料工业/生产资料工业（轻工业/重工业）
+霍夫曼定律：系数随工业化推进而下降
+四个阶段：>1 → ≈1 → <1 → 继续下降</pre>
+                        </div>
+                    </div>
+                    
+                <div class="quiz-card">
+                    <p>✅ <strong>选择题检测</strong></p>
+                    <p>霍夫曼系数下降说明什么？<br>A. 服务业占比上升  B. 重工业化程度提高  C. 农业占比上升  D. 消费水平提高<br>正确答案：B</p>
+                </div>
+                
+                    
+                <div class="tricky-card">
+                    <p>⚠️ <strong>易错点</strong></p>
+                    <p>⚠️ 霍夫曼系数越小≠经济越发达。有些后发国家可以直接发展服务业跳过重工业化阶段</p>
+                </div>
+                
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#5</span>
+                    <span class="q-title">产品循环模式与雁行发展模式</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>产品循环模式：新产品→国内生产→出口→技术扩散→国外生产→国内进口→新一轮创新。雁行发展模式（赤松要）：后发国家的产业发展遵循'进口→国内生产→出口'的模式，形如雁阵飞行。领头雁（发达国家）→ 随行雁（新兴工业化国家）→ 尾雁（发展中国家）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>产品循环：先自己做→别人学去了→别人比你还便宜→你开始从别人那进口→你只好做更新的
+雁行模式：日本先做电子→韩国台湾做→中国大陆做→越南做。像大雁排队飞</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">产品循环：创新→出口→技术外溢→进口→再创新
+雁行模式：进口→国内生产→出口（后发国家阶梯发展）</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <div class="question-header" onclick="toggleQuestion(this)">
+                    <span class="q-num">#6</span>
+                    <span class="q-title">主导产业的扩散效应</span>
+                    <span class="q-tags"><span class="tag tag-名解">名解</span></span>
+                    <span class="expand-icon">▶</span>
+                </div>
+                <div class="question-body" style="display:none;">
+                    <div class="dual-column">
+                        <div class="ppt-column">
+                            <div class="column-label">📖 PPT原话（考试用这个）</div>
+                            <p>主导产业的扩散效应包括三种：①前向效应：主导产业对下游产业的带动（如汽车产业带动加油站、维修、保险）②后向效应：主导产业对上游产业的带动（如汽车产业带动钢铁、橡胶、玻璃）③旁侧效应：主导产业对周边经济和社会的影响（如城镇化、就业、基础设施建设）</p>
+                        </div>
+                        <div class="understand-column">
+                            <div class="column-label">✏️ 理解版（帮助记忆）</div>
+                            <p>一个产业起来了，会带着上下游和周边一起起来。汽车厂→前面带动加油站（前向）、后面带动钢铁厂（后向）、旁边带动餐饮住宿和修路（旁侧）</p>
+                        </div>
+                    </div>
+                    <div class="solution-section">
+                        <div class="section-header" onclick="toggleSection(this)">
+                            <span>📊 完整解答</span>
+                            <span class="expand-icon">▶</span>
+                        </div>
+                        <div class="section-body" style="display:none;">
+                            <pre style="white-space:pre-wrap;font-family:inherit;background:#f8f9fa;padding:12px;border-radius:6px;">前向效应：带动下游（汽车→加油站）
+后向效应：带动上游（汽车→钢铁）
+旁侧效应：带动周边（汽车→城镇化）</pre>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+                </div>
+                <div class="quick-memo">
+                    <div class="memo-header" onclick="toggleSection(this)">
+                        <span>⚡ 考前5分钟必记</span>
+                        <span class="expand-icon">▶</span>
+                    </div>
+                    <div class="section-body" style="display:none;">
+                        <pre style="white-space:pre-wrap;font-family:inherit;">配第-克拉克: 一产→二产→三产
+霍夫曼系数: 消费资料/生产资料, 越小越工业化
+主导产业: 关联强+收入弹性大+生产率快+就业强
+三个效应: 前向+后向+旁侧</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+</div>
+
+<div id="tab2" class="tab-content">
+  
+    <div class="sprint-section">
+        <h2>⚡ 名词解释速查（PPT原话版·按字母/频率排序）</h2>
+        <table class="term-table">
+            <thead><tr><th>术语</th><th>定义</th></tr></thead>
+            <tbody>
+                <tr><td style="font-weight:bold;white-space:nowrap;">勒纳指数</td><td>L=(P-MC)/P，衡量垄断势力，0~1之间</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">CRn</td><td>行业集中度，前n家最大企业市场份额之和</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">HHI</td><td>赫芬达尔-赫希曼指数，各企业市场份额平方和</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">基尼系数</td><td>洛伦兹曲线与对角线面积之比，0~1</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">X-非效率</td><td>缺乏竞争导致成本控制松懈，实际成本高于最低成本</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">哈伯格三角形</td><td>垄断产量低于竞争产量导致的消费者剩余净损失</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">寻租成本</td><td>为维持垄断地位而花费的资源</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">三级价格歧视</td><td>根据不同消费群体设置不同价格，MR₁=MR₂=MC</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">二级价格歧视</td><td>按购买数量/套餐定价，消费者自我选择</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">一级价格歧视</td><td>向每个消费者收取其保留价格，产量达P=MC</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">科斯猜想</td><td>耐用品消费者预期降价→推迟购买→垄断利润丧失</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">霍特林模型</td><td>在线性城市中，厂商选择位置（产品特征）以最大化利润</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">横向差异化</td><td>相同价格下消费者偏好不同品种，无绝对好坏</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">纵向差异化</td><td>所有消费者对产品特征评价一致，都偏好高质量</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">限制性定价</td><td>在位企业在进入前降价以阻止潜在进入者</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">掠夺性定价</td><td>在位企业在进入后将价格降到成本以下以驱逐对手</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">并购悖论</td><td>如果并购只有涨价好处→为何不自涨？真实价值在协同效应</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">双重加价</td><td>上下游垄断者各自加价→最终价格过高→纵向一体化消除</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">自然垄断</td><td>一个企业生产比多个企业更有效率，源于规模经济</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">行政垄断</td><td>政府通过行政手段造成的垄断</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">经济垄断</td><td>企业通过市场竞争形成的垄断</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">马歇尔冲突</td><td>规模经济与竞争活力的矛盾</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">霍夫曼系数</td><td>消费资料工业/生产资料工业，随工业化推进而下降</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">配第-克拉克定理</td><td>劳动力从一产→二产→三产转移</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">主导产业</td><td>在产业结构中处于支配地位、带动经济增长的产业</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">前向效应</td><td>主导产业对下游产业的带动</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">后向效应</td><td>主导产业对上游产业的带动</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">旁侧效应</td><td>主导产业对周边经济和社会的影响</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">SCP范式</td><td>市场结构→企业行为→市场绩效</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">多夫曼-斯坦纳条件</td><td>A/S = -(广告需求弹性/价格需求弹性)</td></tr>
+<tr><td style="font-weight:bold;white-space:nowrap;">产业组织政策</td><td>维持有效竞争、保护消费者福利、促进创新的政策</td></tr>
+
+            </tbody>
+        </table>
+        
+        <h2 style="margin-top:30px;">📐 计算题标准步骤模板</h2>
+        
+    <h3>📐 三级价格歧视标准步骤</h3>
+    <ol>
+      <li><strong>求反需求函数</strong>：P = a - bQ（从Q = a - bP转换）</li>
+      <li><strong>求边际收益</strong>：MR = a - 2bQ</li>
+      <li><strong>令MR=MC</strong>：解出Q*，代回反需求得P*</li>
+      <li><strong>分市场时</strong>：MR₁=MR₂=MC，分别解出Q₁*,Q₂*,P₁*,P₂*</li>
+      <li><strong>比较福利</strong>：CS=½×(截距-P)×Q，比较统一价vs歧视</li>
+    </ol>
+    
+    <h3>📐 科斯问题标准步骤</h3>
+    <ol>
+      <li><strong>出租</strong>：每期按MR=MC定价，利润加总</li>
+      <li><strong>出售(可承诺)</strong>：与出租同，可承诺不降价</li>
+      <li><strong>出售(不可承诺)</strong>：消费者预期降价→只愿付低价</li>
+    </ol>
+    
+    <h3>📐 双重加价标准步骤</h3>
+    <ol>
+      <li><strong>分离时</strong>：上游定w→下游以w为成本定P→双重加价</li>
+      <li><strong>一体化后</strong>：统一决策→P降低→产量增加→福利改善</li>
+    </ol>
+    
+    <h3>📐 限制性定价标准步骤</h3>
+    <ol>
+      <li>计算垄断价格和利润</li>
+      <li>估计进入者的利润函数</li>
+      <li>确定阻止进入的价格（使进入者利润≤固定进入费）</li>
+      <li>比较限制性利润vs容纳进入的利润</li>
+    </ol>
+    
+        
+        <h2 style="margin-top:30px;">⚠️ 易错TOP10</h2>
+        <ol><li>① 勒纳指数L=0→完全竞争，L越大→垄断越强（别搞反了）</li>
+<li>② CRn只看前n家，HHI看全部企业（别混淆）</li>
+<li>③ 一级歧视下产量=P=MC，等于完全竞争产量（反直觉但正确）</li>
+<li>④ 科斯猜想只适用于耐用品（易耗品消费者不能等降价）</li>
+<li>⑤ 三级歧视的定价原则是MR₁=MR₂=MC，不是P₁=P₂</li>
+<li>⑥ 价格歧视提升利润的前提是能有效分割市场（防止套利）</li>
+<li>⑦ 限制性定价≠掠夺性定价：一个在进入前一个在进入后</li>
+<li>⑧ 双重加价消除后价格反而降低（一体化对消费者有利）</li>
+<li>⑨ 横向并购直接提高集中度，纵向并购可能消除双重加价</li>
+<li>⑩ 霍夫曼系数下降=重工业化程度提高（数字越小越工业）</li></ol>
+        
+        <h2 style="margin-top:30px;">📋 材料分析答题框架</h2>
+        <div style="background:#fff8e1;padding:16px;border-radius:8px;border-left:4px solid #f39c12;">
+          <p><strong>四步法：</strong></p>
+          <ol>
+            <li><strong>读材料圈关键词</strong>→判断属于哪章（市场结构/垄断定价/并购/反垄断）</li>
+            <li><strong>识别理论模型</strong>→提取对应的经济学概念（如价格歧视/勒纳指数/霍特林模型）</li>
+            <li><strong>套用分析框架</strong>→用该理论解释材料中的现象（不要用常识！要用理论术语）</li>
+            <li><strong>得出结论</strong>→基于分析给出判断，必要时加政策建议</li>
+          </ol>
+          <p style="margin-top:8px;"><strong>🔑 关键</strong>：每句话都引用概念名称 + 结合材料事实。不要写成「我觉得」，要写「根据XX理论，材料中的XX现象说明……」</p>
+        </div>
+        
+        
+<div class="appendix-section">
+  <h2>📋 附录：Ch1 导论 & Ch10 产业政策前沿</h2>
+  <p style="color: #e74c3c; font-weight: bold;">⚠️ 老师原话：第一章考得很少，第十章考得比较少。以下为精简版。</p>
+  
+  <div class="mini-block">
+    <h3>第一章 导论</h3>
+    <p><strong>一句话总结</strong>：产业经济学研究的是「市场怎么运作、企业怎么竞争、政府怎么管」。核心问题：市场结构→企业行为→市场绩效（SCP范式）。</p>
+    <div class="quiz-card">
+      <p><strong>✅ 选择题检测：</strong></p>
+      <p>SCP范式中的C代表什么？<br>A. Competition  B. Conduct  C. Cost  D. Consumer<br><strong>正确答案：B（Conduct/企业行为）</strong></p>
+    </div>
+  </div>
+  
+  <div class="mini-block">
+    <h3>第十章 产业政策前沿</h3>
+    <p><strong>一句话总结</strong>：产业政策分选择性（政府挑产业扶持）和功能性（政府建环境让市场自己选）。新时代趋势：从选择性→功能性、从补贴→创新环境、关注绿色和数字经济。</p>
+    <div class="quiz-card">
+      <p><strong>✅ 选择题检测：</strong></p>
+      <p>以下哪个属于功能性产业政策？<br>A. 对新能源汽车提供补贴  B. 建设5G基础设施  C. 指定芯片产业为支柱产业  D. 对钢铁企业提供出口退税<br><strong>正确答案：B（建设基础设施属于功能性，其他都是选择性）</strong></p>
+    </div>
+  </div>
+</div>
+
+    </div>
+    
+</div>
+
+</div>
+
+<script>
+// Tab switching
+function switchTab(el, tabId) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+
+// Toggle chapter
+function toggleChapter(el) {
+  const body = el.nextElementSibling;
+  const icon = el.querySelector('.expand-icon');
+  if (body.style.display === 'none') {
+    body.style.display = 'block';
+    icon.textContent = '▼';
+  } else {
+    body.style.display = 'none';
+    icon.textContent = '▶';
+  }
+  updateProgress();
+}
+
+// Toggle question
+function toggleQuestion(el) {
+  const body = el.nextElementSibling;
+  const icon = el.querySelector('.expand-icon');
+  if (body.style.display === 'none') {
+    body.style.display = 'block';
+    icon.textContent = '▼';
+  } else {
+    body.style.display = 'none';
+    icon.textContent = '▶';
+  }
+  updateProgress();
+}
+
+// Toggle section (解答/考前必记)
+function toggleSection(el) {
+  const body = el.nextElementSibling;
+  const icon = el.querySelector('.expand-icon');
+  if (body.style.display === 'none') {
+    body.style.display = 'block';
+    icon.textContent = '▼';
+  } else {
+    body.style.display = 'none';
+    icon.textContent = '▶';
+  }
+}
+
+// Expand all
+function expandAll() {
+  document.querySelectorAll('.chapter-body').forEach(b => b.style.display = 'block');
+  document.querySelectorAll('.question-body').forEach(b => b.style.display = 'block');
+  document.querySelectorAll('.section-body').forEach(b => b.style.display = 'block');
+  document.querySelectorAll('.expand-icon').forEach(i => i.textContent = '▼');
+  updateProgress();
+}
+
+// Collapse all
+function collapseAll() {
+  document.querySelectorAll('.chapter-body').forEach(b => b.style.display = 'none');
+  document.querySelectorAll('.question-body').forEach(b => b.style.display = 'none');
+  document.querySelectorAll('.section-body').forEach(b => b.style.display = 'none');
+  document.querySelectorAll('.expand-icon').forEach(i => i.textContent = '▶');
+  updateProgress();
+}
+
+// Sprint mode - show only P0 chapters with questions expanded
+function sprintMode() {
+  collapseAll();
+  // Expand Ch3 (most important)
+  const ch3 = document.querySelector('[data-chapter="ch3"]');
+  if (ch3) {
+    const header = ch3.querySelector('.chapter-header');
+    if (header) toggleChapter(header);
+    ch3.querySelectorAll('.question-body').forEach(b => b.style.display = 'block');
+    ch3.querySelectorAll('.section-body').forEach(b => b.style.display = 'block');
+    ch3.querySelectorAll('.expand-icon').forEach(i => i.textContent = '▼');
+  }
+  // Also expand Ch2
+  const ch2 = document.querySelector('[data-chapter="ch2"]');
+  if (ch2) {
+    const header = ch2.querySelector('.chapter-header');
+    if (header) toggleChapter(header);
+    ch2.querySelectorAll('.question-body').forEach(b => b.style.display = 'block');
+    ch2.querySelectorAll('.expand-icon').forEach(i => i.textContent = '▼');
+  }
+  // Switch to tab1
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelector('.tab').classList.add('active');
+  document.getElementById('tab1').classList.add('active');
+  updateProgress();
+  window.scrollTo(0, 0);
+}
+
+// Dark mode
+let darkMode = localStorage.getItem('darkMode') === 'true';
+if (darkMode) document.documentElement.style.setProperty('--bg', '#1a1a2e');
+function toggleDark() {
+  darkMode = !darkMode;
+  localStorage.setItem('darkMode', darkMode);
+  location.reload();
+}
+
+// Search
+function doSearch(query) {
+  const q = query.toLowerCase().trim();
+  const chapters = document.querySelectorAll('.chapter-card');
+  
+  chapters.forEach(ch => {
+    if (!q) {
+      ch.classList.remove('hidden');
+      return;
+    }
+    const text = ch.textContent.toLowerCase();
+    if (text.includes(q)) {
+      ch.classList.remove('hidden');
+      // Auto expand matched chapters
+      const body = ch.querySelector('.chapter-body');
+      if (body && body.style.display === 'none') {
+        const header = ch.querySelector('.chapter-header');
+        if (header) toggleChapter(header);
+      }
+    } else {
+      ch.classList.add('hidden');
+    }
+  });
+}
+
+// Progress tracking
+function updateProgress() {
+  const total = document.querySelectorAll('.question-item').length;
+  const expanded = document.querySelectorAll('.question-body[style*="block"]').length;
+  const pct = total > 0 ? Math.round(expanded / total * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  localStorage.setItem('examProgress', pct);
+}
+
+// Restore progress
+window.addEventListener('DOMContentLoaded', function() {
+  const saved = localStorage.getItem('examProgress');
+  if (saved && parseInt(saved) > 0) {
+    // Don't auto-restore on load to avoid complexity
+  }
+});
+
+// Print shortcut
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.key === 'p') {
+    // Allow normal print
+  }
+});
+</script>
+
+</body>
+</html>
