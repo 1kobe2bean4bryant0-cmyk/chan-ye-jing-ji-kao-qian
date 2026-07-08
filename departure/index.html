@@ -4,11 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>悉尼留学全攻略 · Macquarie University 2026</title>
-<script>
-window._baiduReady=false;
-function _initBaiduMap(){window._baiduReady=true;}
-</script>
-<script src="https://api.map.baidu.com/api?v=3.0&ak=39meUecFRpXTdY7Us0FOj8tsUgmU59WU&callback=_initBaiduMap" async defer></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:17px;scroll-padding-top:60px}
@@ -422,23 +419,24 @@ tr:hover td{background:#fafafa}td:first-child{font-weight:600}
   },5000);
 })();
 
-// Baidu Map
+// Leaflet + OSM Map (free, no API key)
 (function(){
   function tryMap(){
     var el=document.getElementById('baiduMap');
     if(!el||!el.clientWidth){setTimeout(tryMap,300);return}
     try{
-      if(typeof BMap==='undefined'){el.innerHTML='<div class=map-fallback>🗺️ 百度地图加载中…如长时间无响应，请使用VPN访问</div>';return}
-      var m=new BMap.Map('baiduMap');
-      var start=new BMap.Point(151.178,-33.943),end=new BMap.Point(151.107,-33.778);
-      m.centerAndZoom(new BMap.Point(151.142,-33.860),12);
-      m.addControl(new BMap.NavigationControl());
-      var mk1=new BMap.Marker(start),mk2=new BMap.Marker(end);
-      m.addOverlay(mk1);m.addOverlay(mk2);
-      mk1.setLabel(new BMap.Label('🛬 悉尼机场',{offset:new BMap.Size(20,-10)}));
-      mk2.setLabel(new BMap.Label('🏠 Marsfield (MQ)',{offset:new BMap.Size(20,-10)}));
-      new BMap.DrivingRoute(m).search(start,end);
-    }catch(e){el.innerHTML='<div class=map-fallback>🗺️ 百度地图暂不可用</div>'}
+      if(typeof L==='undefined'){el.innerHTML='<div class=map-fallback>🗺️ 地图加载中…</div>';return}
+      var m=L.map('baiduMap').setView([-33.860,151.142],12);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        attribution:'&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
+      }).addTo(m);
+      var start=[-33.940,151.175],end=[-33.775,151.104];
+      L.marker(start).addTo(m).bindPopup('🛬 悉尼机场 T1');
+      L.marker(end).addTo(m).bindPopup('🏠 Marsfield (MQ)');
+      // Draw a line
+      L.polyline([start,end],{color:'#e53935',weight:3,dashArray:'8,4'}).addTo(m);
+      m.fitBounds([start,end],{padding:[40,40]});
+    }catch(e){el.innerHTML='<div class=map-fallback>🗺️ 地图暂不可用</div>'}
   }
   setTimeout(tryMap,500);
 })();
