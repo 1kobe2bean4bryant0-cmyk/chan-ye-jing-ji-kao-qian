@@ -3,460 +3,505 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kai · 悉尼留学出发手册 | Macquarie University 2026</title>
+<title>悉尼留学全攻略 · 出发手册 | Macquarie University 2026</title>
+<script src="https://api.map.baidu.com/api?v=3.0&ak=39meUecFRpXTdY7Us0FOj8tsUgmU59WU"></script>
 <style>
-  /* ===== RESET ===== */
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;font-size:17px}
-  body{
-    font-family:"Crimson Text","Noto Serif SC","STSong","Songti SC","SimSun","Times New Roman",serif;
-    background:#faf9f6;color:#2c2c2c;line-height:1.8;
-    -webkit-font-smoothing:antialiased;
-  }
-
-  /* ===== MAGAZINE LAYOUT ===== */
-  .masthead{
-    text-align:center;padding:64px 24px 40px;
-    border-bottom:2px solid #2c2c2c;
-    max-width:720px;margin:0 auto 48px;
-  }
-  .masthead .tag{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:#888;margin-bottom:12px}
-  .masthead h1{font-size:2.4rem;font-weight:400;line-height:1.2;margin-bottom:8px;letter-spacing:-0.5px}
-  .masthead .deck{font-size:1rem;color:#666;line-height:1.6;margin-top:12px}
-  .masthead .meta{font-size:0.75rem;color:#999;margin-top:16px;letter-spacing:1px}
-  .masthead .meta span::after{content:" · ";color:#ccc}
-  .masthead .meta span:last-child::after{content:""}
-
-  article{max-width:720px;margin:0 auto;padding:0 24px 80px}
-
-  /* ===== TYPOGRAPHY ===== */
-  h2{
-    font-size:1.5rem;font-weight:400;letter-spacing:-0.3px;
-    border-top:1px solid #ddd;padding-top:36px;margin:48px 0 20px;
-    text-align:center;
-  }
-  h2 .num{display:block;font-size:0.65rem;letter-spacing:4px;color:#aaa;margin-bottom:6px;font-weight:400}
-  h3{
-    font-size:1.05rem;font-weight:600;margin:28px 0 10px;color:#333;
-    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
-  }
-  h4{font-size:0.9rem;font-weight:700;margin:18px 0 6px;color:#555}
-  p{margin:0 0 12px;font-size:0.95rem}
-  .lead{font-size:1.1rem;color:#555;line-height:1.9}
-
-  /* ===== CARDS ===== */
-  .card{
-    background:#fff;border:1px solid #eee;border-radius:4px;
-    padding:24px 28px;margin:20px 0;
-    box-shadow:0 1px 3px rgba(0,0,0,0.04);
-  }
-  .card-header{font-size:0.75rem;text-transform:uppercase;letter-spacing:2px;color:#999;margin-bottom:8px}
-
-  /* ===== FLIGHT CARD ===== */
-  .flight-card{
-    background:#fff;border:1px solid #d4d4d4;border-radius:6px;
-    padding:28px;margin:24px 0;
-    box-shadow:0 2px 8px rgba(0,0,0,0.05);
-  }
-  .flight-route{
-    display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:16px 0;
-    font-size:1.3rem;letter-spacing:-0.5px;
-  }
-  .flight-route .city{font-weight:700}
-  .flight-route .arrow{color:#bbb;font-size:1rem}
-  .flight-route .time{font-size:0.8rem;color:#888}
-  .flight-segment{
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
-    padding:14px 0;border-bottom:1px solid #f0f0f0;
-  }
-  .flight-segment:last-child{border-bottom:none}
-  .flight-segment .col{min-width:100px}
-  .flight-segment .label{font-size:0.65rem;text-transform:uppercase;letter-spacing:2px;color:#999}
-  .flight-segment .value{font-size:0.9rem;font-weight:600;color:#333}
-
-  /* ===== TABLES ===== */
-  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:0.85rem}
-  th,td{padding:8px 12px;text-align:left;border-bottom:1px solid #eee}
-  th{font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:#999;font-weight:600;border-bottom:2px solid #ddd}
-  tr:hover td{background:#fafafa}
-  td:first-child{font-weight:600}
-
-  /* ===== CALLOUTS ===== */
-  .note{
-    border-left:3px solid #2c2c2c;padding:8px 16px;margin:14px 0;
-    font-size:0.85rem;color:#555;background:#f9f9f9;
-  }
-  .tag-red{border-left-color:#c53030;background:#fff5f5}
-  .tag-green{border-left-color:#38a169;background:#f0fff4}
-  .tag-blue{border-left-color:#3182ce;background:#ebf8ff}
-  .tag-amber{border-left-color:#d69e2e;background:#fffbeb}
-  .note strong{color:#2c2c2c}
-
-  /* ===== CHECKLIST ===== */
-  .check-item{
-    display:flex;align-items:flex-start;gap:10px;padding:6px 0;
-    font-size:0.85rem;border-bottom:1px dotted #eee;
-  }
-  .check-item .box{font-size:1.1rem;color:#ccc;flex-shrink:0}
-
-  /* ===== BADGE ===== */
-  .badge{display:inline-block;padding:2px 8px;font-size:0.65rem;font-weight:700;letter-spacing:0.5px;border-radius:2px}
-  .badge-r{background:#fed7d7;color:#c53030}
-  .badge-y{background:#fefcbf;color:#975a16}
-  .badge-g{background:#c6f6d5;color:#276749}
-  .badge-b{background:#bee3f8;color:#2a4365}
-
-  /* ===== SOURCES ===== */
-  .sources{
-    border-top:2px solid #2c2c2c;padding-top:24px;margin-top:48px;
-  }
-  .sources h3{font-size:0.85rem;text-transform:uppercase;letter-spacing:2px;color:#999;margin-bottom:16px}
-  .source-item{font-size:0.8rem;padding:6px 0;color:#666;border-bottom:1px dotted #eee}
-  .source-item .tag{display:inline-block;font-size:0.6rem;padding:1px 6px;border-radius:2px;margin-right:8px}
-  .tag-v{background:#c6f6d5;color:#276749}
-  .tag-u{background:#fefcbf;color:#975a16}
-  .tag-x{background:#fed7d7;color:#c53030}
-
-  /* ===== STATS BAR ===== */
-  .stats{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin:32px 0}
-  .stat{text-align:center}
-  .stat .num{font-size:2rem;font-weight:700;line-height:1}
-  .stat .label{font-size:0.65rem;text-transform:uppercase;letter-spacing:2px;color:#999;margin-top:4px}
-
-  /* ===== RESPONSIVE ===== */
-  @media(max-width:600px){
-    .masthead h1{font-size:1.6rem}
-    .masthead{padding:40px 16px 28px}
-    article{padding:0 12px 60px}
-    .flight-route{font-size:1.1rem}
-    th,td{padding:6px 8px;font-size:0.75rem}
-  }
-
-  /* ===== PRINT ===== */
-  @media print{
-    body{background:#fff;font-size:11px}
-    .masthead{border-bottom:1px solid #000}
-    article{max-width:100%}
-    .card,.flight-card{border:1px solid #ccc;box-shadow:none}
-  }
-
-  /* ===== NUMBER ===== */
-  .big-num{font-family:-apple-system,BlinkMacSystemFont,"SF Mono","Menlo",monospace;font-size:1.3rem;font-weight:700;color:#c53030}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:17px;scroll-padding-top:60px}
+body{font-family:"Crimson Text","Noto Serif SC","STSong","Songti SC","SimSun","Times New Roman",serif;background:#faf9f6;color:#2c2c2c;line-height:1.8;-webkit-font-smoothing:antialiased}
+#topNav{position:fixed;top:0;left:0;right:0;height:50px;background:#1a1a1a;z-index:9999;display:flex;align-items:center;padding:0 14px;box-shadow:0 2px 8px rgba(0,0,0,0.3);gap:3px;overflow-x:auto}
+#topNav .brand{color:#fff;font-weight:700;font-size:0.72rem;white-space:nowrap;margin-right:6px;letter-spacing:1px;border-right:1px solid #444;padding-right:10px}
+#topNav a{color:#aaa;text-decoration:none;font-size:0.68rem;padding:4px 8px;white-space:nowrap;border-radius:3px;transition:all 0.2s}
+#topNav a:hover,#topNav a.active{color:#fff;background:#333}
+#topNav .credit{color:#666;font-size:0.62rem;margin-left:auto;white-space:nowrap}
+#topNav::-webkit-scrollbar{display:none}
+.masthead{text-align:center;padding:80px 24px 36px;border-bottom:2px solid #2c2c2c;max-width:760px;margin:0 auto 40px}
+.masthead .tag{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:#888;margin-bottom:6px}
+.masthead h1{font-size:2.4rem;font-weight:400;line-height:1.2;margin-bottom:4px;letter-spacing:-0.5px}
+.masthead .deck{font-size:0.95rem;color:#666;line-height:1.6;margin-top:8px}
+.masthead .author{font-size:0.75rem;color:#999;margin-top:10px;letter-spacing:1px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+article{max-width:760px;margin:0 auto;padding:0 24px 80px}
+.chapter{margin:44px 0}
+.chapter-num{font-size:0.7rem;letter-spacing:4px;color:#aaa;text-align:center;margin-bottom:6px}
+.chapter h2{font-size:1.6rem;font-weight:400;text-align:center;letter-spacing:-0.5px;padding-bottom:14px;border-bottom:1px solid #ddd;margin-bottom:24px}
+h3{font-size:1.05rem;font-weight:600;margin:26px 0 8px;color:#333;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+h4{font-size:0.9rem;font-weight:700;margin:16px 0 5px;color:#555}
+p{margin:0 0 10px;font-size:0.95rem}
+.card{background:#fff;border:1px solid #eee;border-radius:4px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.card-header{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;color:#999;margin-bottom:8px}
+.flight-card{background:#fff;border:1px solid #d4d4d4;border-radius:6px;padding:22px;margin:18px 0;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+.flight-route{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0;font-size:1.15rem;letter-spacing:-0.5px}
+.flight-route .city{font-weight:700}.flight-route .arrow{color:#bbb;font-size:0.85rem}.flight-route .time{font-size:0.72rem;color:#888}
+.flight-segment{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.flight-segment:last-child{border-bottom:none}
+.flight-segment .col{min-width:85px}.flight-segment .label{font-size:0.6rem;text-transform:uppercase;letter-spacing:2px;color:#999}.flight-segment .value{font-size:0.82rem;font-weight:600;color:#333}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:0.8rem}
+th,td{padding:6px 9px;text-align:left;border-bottom:1px solid #eee}
+th{font-size:0.63rem;text-transform:uppercase;letter-spacing:1px;color:#999;font-weight:600;border-bottom:2px solid #ddd}
+tr:hover td{background:#fafafa}td:first-child{font-weight:600}
+.note{border-left:3px solid #2c2c2c;padding:7px 12px;margin:10px 0;font-size:0.8rem;color:#555;background:#f9f9f9}
+.nr{border-left-color:#c53030;background:#fff5f5}.ng{border-left-color:#38a169;background:#f0fff4}.nb{border-left-color:#3182ce;background:#ebf8ff}.na{border-left-color:#d69e2e;background:#fffbeb}
+.note strong{color:#2c2c2c}
+.ci{display:flex;align-items:flex-start;gap:10px;padding:4px 0;font-size:0.8rem;border-bottom:1px dotted #eee}
+.ci .box{font-size:1rem;color:#ccc;flex-shrink:0}
+.bd{display:inline-block;padding:1px 6px;font-size:0.58rem;font-weight:700;letter-spacing:0.5px;border-radius:2px}
+.br{background:#fed7d7;color:#c53030}.by{background:#fefcbf;color:#975a16}.bg{background:#c6f6d5;color:#276749}.bb{background:#bee3f8;color:#2a4365}
+.step{background:#fff;border-radius:6px;margin:14px 0;padding:18px;border:1px solid #eee;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.step .sh{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.step .sn{width:30px;height:30px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0}
+.step .st{font-weight:700;font-size:0.88rem}.step .sb{font-size:0.8rem;color:#555;line-height:1.7}
+.step .tp{background:#fffbeb;border-left:3px solid #ffc107;padding:7px 10px;border-radius:4px;margin:7px 0;font-size:0.76rem}
+.step .wn{background:#fff5f5;border-left:3px solid #e53e3e;padding:7px 10px;border-radius:4px;margin:7px 0;font-size:0.76rem}
+.step .ok{background:#f0fff4;border-left:3px solid #38a169;padding:7px 10px;border-radius:4px;margin:7px 0;font-size:0.76rem}
+.css-map-container{position:relative;margin:10px 0;border-radius:6px;overflow:hidden}
+.css-map{position:relative;width:100%;height:0;padding-bottom:65%;background:linear-gradient(170deg,#e8f4e8 0%,#d4e8d4 30%,#e8ecd4 60%,#d4dce8 100%);border-radius:6px;overflow:hidden;box-shadow:inset 0 0 60px rgba(0,0,0,0.05)}
+.map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.03) 1px,transparent 1px);background-size:28px 28px}
+.map-rd{position:absolute;background:rgba(255,255,255,0.7);border-radius:2px}.map-rd-h{height:3px}.map-rd-v{width:3px}
+.rd-lb{position:absolute;top:-13px;left:4px;font-size:0.52rem;font-weight:700;color:#666;white-space:nowrap;background:rgba(255,255,255,0.8);padding:0 4px;border-radius:3px}
+.map-mk{position:absolute;transform:translate(-50%,-50%);text-align:center;z-index:5}
+.mk-dt{width:10px;height:10px;border-radius:50%;margin:0 auto 2px;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.3)}
+.mk-r{background:#e53e3e}.mk-o{background:#ed8936}.mk-g{background:#38a169}.mk-b{background:#3182ce}.mk-p{background:#805ad5}.mk-t{background:#319795}.mk-y{background:#d69e2e}
+.mk-lb{font-size:0.62rem;font-weight:700;color:#2d3748;background:rgba(255,255,255,0.85);padding:2px 5px;border-radius:3px;white-space:nowrap}
+.map-leg{display:flex;flex-wrap:wrap;gap:7px 14px;margin-top:7px;font-size:0.76rem;padding:5px 0}
+#baiduMap{width:100%;height:400px;border-radius:8px;margin:10px 0}
+.sources{border-top:2px solid #2c2c2c;padding-top:22px;margin-top:44px}
+.sources h3{font-size:0.78rem;text-transform:uppercase;letter-spacing:2px;color:#999;margin-bottom:14px}
+.si{font-size:0.76rem;padding:4px 0;color:#666;border-bottom:1px dotted #eee}
+.si .st{display:inline-block;font-size:0.58rem;padding:1px 5px;border-radius:2px;margin-right:5px}
+.sv{background:#c6f6d5;color:#276749}.su{background:#fefcbf;color:#975a16}.sx{background:#fed7d7;color:#c53030}
+.stats{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:20px 0}
+.stat{text-align:center}.stat .num{font-size:1.7rem;font-weight:700;line-height:1;font-family:-apple-system,BlinkMacSystemFont,monospace}.stat .lb{font-size:0.58rem;text-transform:uppercase;letter-spacing:2px;color:#999;margin-top:1px}
+.big-num{color:#c53030}
+@media(max-width:600px){.masthead h1{font-size:1.4rem}.masthead{padding:68px 12px 24px}article{padding:0 10px 50px}.flight-route{font-size:0.95rem}th,td{padding:4px 5px;font-size:0.68rem}#topNav a{font-size:0.58rem;padding:3px 5px}.mk-lb{font-size:0.48rem}}
+@media print{#topNav{display:none}body{background:#fff;font-size:9px}.masthead{border-bottom:1px solid #000}.card,.flight-card{border:1px solid #ccc;box-shadow:none}article{max-width:100%}}
 </style>
 </head>
 <body>
 
-<!-- ===== MASTHEAD ===== -->
+<nav id="topNav">
+  <span class="brand">📋 悉尼留学全攻略</span>
+  <a href="#ch1">出发前</a>
+  <a href="#ch2">旅途中</a>
+  <a href="#ch3">抵达悉尼</a>
+  <a href="#ch4">安顿生活</a>
+  <a href="#sources">📚 来源</a>
+  <span class="credit">郑佳骐KAI 制作 · 2026年7月</span>
+</nav>
+
 <div class="masthead">
-  <div class="tag">Pre-departure Briefing</div>
-  <h1>悉尼留学出发手册</h1>
-  <div class="deck">Kai（郑佳骐）· Macquarie University · 2026年7月</div>
-  <div class="meta">
-    <span>成都 → 厦门 → 悉尼</span>
-    <span>厦门航空 MF8432 / MF801</span>
-    <span>7月14日出发</span>
-  </div>
+  <div class="tag">Pre-departure Complete Guide</div>
+  <h1>悉尼留学全攻略</h1>
+  <div class="deck">Macquarie University · 2026年7月<br>成都 → 厦门 → 悉尼 · 厦门航空</div>
+  <div class="author">郑佳骐 KAI 制作 · 基于亲身准备 + 数十位留学生真实经验汇总</div>
 </div>
 
 <article>
 
-<!-- ===== 航班信息 ===== -->
-<h2><span class="num">Section 01</span>航班 &amp; 行李政策</h2>
+<!-- ===== CHAPTER 1: 出发前 ===== -->
+<div class="chapter" id="ch1">
+<div class="chapter-num">Chapter 01</div>
+<h2>出发前 · 行李准备</h2>
 
+<!-- 航班卡片 -->
 <div class="flight-card">
-  <div class="card-header">厦门航空 · 单程 · 4338元</div>
-  
+  <div class="card-header">厦门航空 · 单程 · 成都→厦门→悉尼</div>
   <div class="flight-route">
-    <div><span class="city">成都</span><br><span class="time">TFU T2</span></div>
+    <div><span class="city">成都</span><br><span class="time">TFU T2 · 7/14 17:45</span></div>
     <div class="arrow">→</div>
-    <div><span class="city">厦门</span><br><span class="time">XMN T3 · 1h35m中转</span></div>
+    <div><span class="city">厦门</span><br><span class="time">XMN T3 · 中转1h35m</span></div>
     <div class="arrow">→</div>
-    <div><span class="city">悉尼</span><br><span class="time">SYD T1 · 7月15日 09:20</span></div>
+    <div><span class="city">悉尼</span><br><span class="time">SYD T1 · 7/15 09:20</span></div>
   </div>
-
-  <div class="flight-segment">
-    <div class="col"><div class="label">第一段</div><div class="value">MF8432 · 17:45→20:25</div></div>
-    <div class="col"><div class="label">机型</div><div class="value">波音737-800 · 经济舱</div></div>
-    <div class="col"><div class="label">飞行</div><div class="value">2h40m · 含餐</div></div>
-  </div>
-  <div class="flight-segment">
-    <div class="col"><div class="label">第二段</div><div class="value">MF801 · 22:00→09:20(+1)</div></div>
-    <div class="col"><div class="label">机型</div><div class="value">波音787-9 · 经济舱</div></div>
-    <div class="col"><div class="label">飞行</div><div class="value">9h20m · 含餐</div></div>
-  </div>
-  <div class="note tag-green" style="margin-top:16px">
-    ✅ <strong>行李直达</strong>：成都托运 → 悉尼取。厦门中转1h35m无需取行李、无需换航站楼（均在T3）。
-  </div>
+  <div class="flight-segment"><div class="col"><div class="label">第一段</div><div class="value">MF8432 · 2h40m · 737-800</div></div><div class="col"><div class="label">第二段</div><div class="value">MF801 · 9h20m · 787-9</div></div><div class="col"><div class="label">总时长</div><div class="value">13h35m · 含餐</div></div></div>
+  <div class="note ng"><strong>✅ 行李直达</strong>：成都托运→悉尼取。厦门T3同楼中转，无需取行李。</div>
 </div>
 
-<!-- ===== 行李配额 ===== -->
-<h3>行李配额明细</h3>
-
+<!-- 行李配额 -->
+<h3>📊 行李配额</h3>
 <div class="stats">
-  <div class="stat"><div class="num big-num">46</div><div class="label">托运 kg</div></div>
-  <div class="stat"><div class="num big-num">2</div><div class="label">托运 件数</div></div>
-  <div class="stat"><div class="num big-num">7</div><div class="label">登机行李 kg</div></div>
-  <div class="stat"><div class="num big-num">1</div><div class="label">个人物品 件</div></div>
-  <div class="stat"><div class="num big-num">~58</div><div class="label">总运输力 kg</div></div>
+  <div class="stat"><div class="num big-num">46</div><div class="lb">托运 kg</div></div>
+  <div class="stat"><div class="num">2</div><div class="lb">托运件数</div></div>
+  <div class="stat"><div class="num">7</div><div class="lb">登机行李 kg</div></div>
+  <div class="stat"><div class="num">1</div><div class="lb">个人物品</div></div>
+  <div class="stat"><div class="num">~58</div><div class="lb">总运力 kg</div></div>
 </div>
-
 <table>
-  <tr><th>类型</th><th>件数</th><th>限重</th><th>尺寸</th><th>你的物品</th><th>备注</th></tr>
-  <tr><td>托运行李</td><td>2件</td><td>各23kg</td><td>三边和≤158cm</td><td>行李箱×2</td><td>成都→悉尼直达</td></tr>
-  <tr><td>登机行李</td><td>1件</td><td>≤7kg</td><td>55×40×20cm</td><td>旅行包</td><td>放头顶行李架</td></tr>
-  <tr><td>个人物品</td><td>1件</td><td>不称重</td><td>能塞座位下</td><td>背包</td><td>电脑/充电宝/证件等</td></tr>
+  <tr><th>类型</th><th>件数</th><th>限重</th><th>尺寸</th><th>放什么</th><th>备注</th></tr>
+  <tr><td>🧳 托运</td><td>2件</td><td>各23kg</td><td>三边和≤158cm</td><td>行李1(海关友好)+行李2(杂项)</td><td>成都→悉尼直达</td></tr>
+  <tr><td>👜 登机行李</td><td>1件</td><td>≤7kg</td><td>55×40×20cm</td><td>旅行包/大号旅行包</td><td>头顶行李架</td></tr>
+  <tr><td>🎒 个人物品</td><td>1件</td><td>不称重</td><td>能塞座位下</td><td>背包(电脑/证件/充电宝)</td><td>重物全塞这里！</td></tr>
 </table>
+<div class="note na"><strong>💡 行李箱保护套</strong>：淘宝¥15-30买两个，防刮防脏。大号旅行包作为登机行李，轻便衣物+应急物品。</div>
 
-<div class="note tag-amber">
-  <strong>⚠️ 策略提醒</strong>：把重的全塞背包（电脑、充电宝、证件——背包一般不称重）。旅行包保持轻便。充电宝<strong>必须随身</strong>，不可托运。液体单件≤100ml。
+<!-- 随身登机 -->
+<h3>🎒 随身登机清单</h3>
+<div class="card"><div class="card-header">绝不能托运 · 落地即用</div>
+<div class="ci"><span class="box">☐</span>护照(有效期>6个月) — 复印2份分开放 · 签证打印件</div>
+<div class="ci"><span class="box">☐</span>CoE + OSHC + Offer + 住宿合同 — 打印+电子版</div>
+<div class="ci"><span class="box">☐</span>驾照+NAATI翻译 · 英文验光单 · 英文处方翻译(如需)</div>
+<div class="ci"><span class="box">☐</span>笔记本电脑 + 充电宝(≤100Wh·必须随身！)</div>
+<div class="ci"><span class="box">☐</span>备用眼镜+隐形眼镜 · 一支笔(填入境卡！)</div>
+<div class="ci"><span class="box">☐</span>薄外套(飞机上冷) · 钱包+AUD现金$1000-2000</div>
+<div class="ci"><span class="box">☐</span><strong>U型枕</strong> — 长途飞行救命神器，9小时脖子靠它</div>
+<div class="ci"><span class="box">☐</span><strong>湿厕纸+酒精湿巾</strong> — 飞机上+落地应急清洁</div>
 </div>
 
-<div class="note tag-red">
-  <strong>⚠️ 中转注意</strong>：厦门转机仅1h35m。下机后走国际中转通道→过海关/安检→直奔MF801登机口。不逛免税店。
-</div>
-
-<div class="source-item"><span class="tag tag-v">✅ 已确认</span> 厦门航空国际航线经济舱标准政策（2×23kg托运+1×7kg登机+1个人物品）。具体以票面/客服确认为准。</div>
-
-<!-- ===== 总览 ===== -->
-<h2><span class="num">Section 02</span>行李分配总览</h2>
-
+<!-- 药品 -->
+<h3>💊 药品 & 海关申报</h3>
+<div class="card"><div class="card-header">托运 · 全部申报YES · 保留原包装</div>
 <table>
-  <tr><th>运输方式</th><th>放什么</th><th>重量</th></tr>
-  <tr><td>🧳 行李箱1 — "海关友好箱"</td><td>药品+食品+衣物（方便开箱检查）</td><td>~20kg</td></tr>
-  <tr><td>🧳 行李箱2 — "杂项补给箱"</td><td>衣物+电子配件+厨具+杂物</td><td>~20kg</td></tr>
-  <tr><td>🎒 随身背包</td><td>证件+电脑+充电宝+眼镜+笔+薄外套</td><td>~5kg</td></tr>
-  <tr><td>👜 登机旅行包</td><td>轻便衣物+应急物品</td><td>≤7kg</td></tr>
-  <tr><td>📦 海运集运</td><td>床品+厨具+文具+书籍+非当季衣物</td><td>提前1个月寄出</td></tr>
-  <tr><td>🛒 悉尼当地买</td><td>被子枕头+洗漱大件+锅碗+食品调料</td><td>0kg</td></tr>
+  <tr><th>物品</th><th>数量</th><th>优先级</th><th>备注</th></tr>
+  <tr><td>头孢/阿莫西林</td><td>自用量</td><td><span class="bd br">必带</span></td><td>原包装+英文说明书</td></tr>
+  <tr><td>布洛芬 · 对乙酰氨基酚</td><td>各1盒</td><td><span class="bd br">必带</span></td><td>确认不含伪麻黄碱！</td></tr>
+  <tr><td>蒙脱石散/氯雷他定/藿香正气水</td><td>各1盒</td><td><span class="bd by">建议</span></td><td>常用药</td></tr>
+  <tr><td>创可贴/云南白药/扶他林</td><td>各适量</td><td><span class="bd by">建议</span></td><td>外用</td></tr>
 </table>
-
-<!-- ===== 随身 ===== -->
-<h2><span class="num">Section 03</span>随身登机包</h2>
-
-<div class="card">
-  <div class="card-header">绝不能托运 · 落地即用</div>
-  <div class="check-item"><span class="box">☐</span>护照（有效期>6个月）— 复印2份分开放</div>
-  <div class="check-item"><span class="box">☐</span>签证打印件 (Student Visa 500) — 电子版存手机+打印1份</div>
-  <div class="check-item"><span class="box">☐</span>CoE 入学确认函 + OSHC保险卡/保单 + Offer Letter</div>
-  <div class="check-item"><span class="box">☐</span>住宿合同/地址 — 入境卡需填</div>
-  <div class="check-item"><span class="box">☐</span>驾照原件 + NAATI翻译件 + 英文验光单</div>
-  <div class="check-item"><span class="box">☐</span>笔记本电脑 + 充电宝（≤100Wh，<strong>必须随身！</strong>）</div>
-  <div class="check-item"><span class="box">☐</span>备用眼镜+隐形眼镜+一支笔（填入境卡！）</div>
-  <div class="check-item"><span class="box">☐</span>薄外套（飞机上冷）+ 钱包 + AUD现金$1000-2000</div>
+<div class="note nr"><strong>⛔ 绝对禁止</strong>：白加黑/新康泰克(伪麻黄碱)、复方甘草片(阿片)、连花清瘟。罚款$2,664 AUD。</div>
 </div>
 
-<!-- ===== 药品 ===== -->
-<h2><span class="num">Section 04</span>药品 &amp; 海关申报</h2>
-
-<div class="card">
-  <div class="card-header">托运 · 全部申报 YES · 保留原包装</div>
-  <table>
-    <tr><th>物品</th><th>数量</th><th>优先级</th><th>备注</th></tr>
-    <tr><td>头孢/阿莫西林（抗生素）</td><td>自用量</td><td><span class="badge badge-r">必带</span></td><td>原包装+说明书</td></tr>
-    <tr><td>布洛芬</td><td>1盒</td><td><span class="badge badge-r">必带</span></td><td>不含伪麻黄碱</td></tr>
-    <tr><td>对乙酰氨基酚（必理通）</td><td>1盒</td><td><span class="badge badge-r">必带</span></td><td>确认不含伪麻黄碱！</td></tr>
-    <tr><td>蒙脱石散/氯雷他定/藿香正气水</td><td>各1盒</td><td><span class="badge badge-y">建议</span></td><td></td></tr>
-    <tr><td>创可贴/云南白药/扶他林</td><td>各适量</td><td><span class="badge badge-y">建议</span></td><td>外用</td></tr>
-  </table>
-  <div class="note tag-red" style="margin-top:12px">
-    <strong>⛔ 绝对禁止</strong>：白加黑、新康泰克（含伪麻黄碱）、复方甘草片（含阿片）、连花清瘟。罚款$2,664 AUD。
-  </div>
-</div>
-
-<div class="source-item"><span class="tag tag-v">✅ 已确认</span> 澳洲海关入境罚款标准（$2,664 AUD · 2024年）— 来源：ABF官网 abf.gov.au。伪麻黄碱/阿片类药物禁止 — 来源：TGA管制清单。</div>
-
-<!-- ===== 衣物 ===== -->
-<h2><span class="num">Section 05</span>衣物 &amp; 电子产品</h2>
-
+<!-- 衣物 -->
+<h3>👔 衣物 & 防晒</h3>
 <table>
   <tr><th>物品</th><th>数量</th><th>优先级</th><th>原因</th></tr>
-  <tr><td>内裤/内衣</td><td>1-2年量</td><td><span class="badge badge-r">必带</span></td><td>澳洲尺码偏大</td></tr>
-  <tr><td>袜子(船袜+棉袜+连裤袜)</td><td>各10双+</td><td><span class="badge badge-r">必带</span></td><td>国内¥3/双 vs 澳洲$5</td></tr>
-  <tr><td>秋衣/保暖内衣</td><td>2-3套</td><td><span class="badge badge-r">必带</span></td><td>Heattech澳洲贵+断码</td></tr>
-  <tr><td>轻薄羽绒服/马甲</td><td>1-2件</td><td><span class="badge badge-r">必带</span></td><td>悉尼冬天湿冷</td></tr>
-  <tr><td>防雨外套/冲锋衣+折叠伞</td><td>各1</td><td><span class="badge badge-r">必带</span></td><td>悉尼随时下雨</td></tr>
-  <tr><td>转换插头(澳标I型)</td><td>2-3个</td><td><span class="badge badge-r">必带</span></td><td>公牛/德力西</td></tr>
-  <tr><td>国标排插(带USB)</td><td>1-2个</td><td><span class="badge badge-r">必带</span></td><td>一个转换头→排插→所有设备</td></tr>
-  <tr><td>数据线(各类型)</td><td>各3根+</td><td><span class="badge badge-r">必带</span></td><td>澳洲$15/根</td></tr>
-  <tr><td>手机钢化膜</td><td>3-5张</td><td><span class="badge badge-r">必带</span></td><td>澳洲$15-20/张</td></tr>
-  <tr><td>备用眼镜+隐形眼镜</td><td>2副+/半年量</td><td><span class="badge badge-r">必带</span></td><td>澳洲配镜$400+</td></tr>
-  <tr><td>真空压缩袋(手卷式)</td><td>5-8个</td><td><span class="badge badge-r">必带</span></td><td>打包神器！</td></tr>
+  <tr><td>内裤/内衣</td><td>1-2年量</td><td><span class="bd br">必带</span></td><td>澳洲尺码偏大</td></tr>
+  <tr><td>袜子(船袜+棉袜+连裤袜)</td><td>各10双+</td><td><span class="bd br">必带</span></td><td>国内¥3/双 vs 澳洲$5</td></tr>
+  <tr><td>秋衣/保暖内衣</td><td>2-3套</td><td><span class="bd br">必带</span></td><td>Heattech澳洲贵+断码</td></tr>
+  <tr><td>轻薄羽绒服/马甲</td><td>1-2件</td><td><span class="bd br">必带</span></td><td>悉尼冬天湿冷</td></tr>
+  <tr><td>防雨外套/冲锋衣+折叠伞</td><td>各1</td><td><span class="bd br">必带</span></td><td>悉尼随时下雨</td></tr>
+  <tr><td><strong>遮阳伞</strong></td><td>1把</td><td><span class="bd by">建议</span></td><td>澳洲紫外线极强，和雨伞各一把</td></tr>
+  <tr><td><strong>防晒面罩+防晒衣</strong></td><td>各1</td><td><span class="bd br">必带</span></td><td>物理防晒比防晒霜更可靠</td></tr>
+  <tr><td>真空压缩袋(手卷式)+真空泵</td><td>5-8个</td><td><span class="bd br">必带</span></td><td>打包神器！</td></tr>
 </table>
 
-<div class="source-item"><span class="tag tag-u">⚠️ 基于经验</span> 衣物/电子产品价格对比基于多项小红书/知乎留学生经验帖综合。Kmart价格基于公开零售信息，可能有波动。</div>
-
-<!-- ===== 厨房 ===== -->
-<h2><span class="num">Section 06</span>厨房用品</h2>
-
-<h3>🔴 从国内带（托运 ~3kg）</h3>
+<!-- 电子配件 -->
+<h3>💻 电子配件</h3>
 <table>
-  <tr><th>物品</th><th>预算 ¥</th><th>说明</th></tr>
-  <tr><td>中式菜刀（十八子作/邓家刀）</td><td>50-150</td><td>最值得带！澳洲$25-50品质差</td></tr>
-  <tr><td>筷子（5-10双）</td><td>20-50</td><td>华超$3-5/双质感差</td></tr>
-  <tr><td>擀面杖+硅胶揉面垫+刮板+蒸笼布</td><td>40-105</td><td>面食三件套，轻便</td></tr>
-  <tr><td>削皮器+厨房剪刀+磨刀石</td><td>40-80</td><td></td></tr>
-  <tr><td>保鲜盒（乐扣2-3个）</td><td>20-50</td><td></td></tr>
-  <tr><td>好花椒+干辣椒（各100g）</td><td>20-40</td><td>如讲究品质</td></tr>
+  <tr><th>物品</th><th>数量</th><th>优先级</th><th>备注</th></tr>
+  <tr><td>澳标转换插头(I型·公牛)</td><td>2-3个</td><td><span class="bd br">必带</span></td><td>公牛/德力西</td></tr>
+  <tr><td>绕线国标排插(带USB)</td><td>1-2个</td><td><span class="bd br">必带</span></td><td>一转换头→排插→所有设备</td></tr>
+  <tr><td>数据线(苹果+安卓+Type-C)</td><td>各3根+</td><td><span class="bd br">必带</span></td><td>澳洲$15/根</td></tr>
+  <tr><td>手机钢化膜</td><td>3-5张</td><td><span class="bd br">必带</span></td><td>澳洲$15-20/张</td></tr>
+  <tr><td><strong>手机挂绳</strong></td><td>1-2条</td><td><span class="bd by">建议</span></td><td>防丢防抢，¥5不占地</td></tr>
+  <tr><td><strong>手提电子秤</strong></td><td>1个</td><td><span class="bd br">必带</span></td><td>防超重神器！装箱时称一下</td></tr>
+  <tr><td><strong>U盘</strong></td><td>1个</td><td><span class="bd by">建议</span></td><td>打印/交作业备用</td></tr>
+  <tr><td>备用手机 · 录音笔</td><td>各1</td><td><span class="bd by">建议</span></td><td></td></tr>
 </table>
 
-<h3>🟢 悉尼当地买</h3>
+<!-- 日用品 -->
+<h3>🏠 日用品</h3>
 <table>
-  <tr><th>物品</th><th>去哪</th><th>预算 AUD</th></tr>
-  <tr><td>炒锅（中式铁锅）</td><td>Eastwood华超/IKEA</td><td>$25-50</td></tr>
+  <tr><th>物品</th><th>数量</th><th>优先级</th><th>备注</th></tr>
+  <tr><td>框架眼镜(备用)</td><td>2副+</td><td><span class="bd br">必带</span></td><td>澳洲配镜$400+</td></tr>
+  <tr><td>隐形眼镜</td><td>半年量</td><td><span class="bd br">必带</span></td><td>澳洲需处方</td></tr>
+  <tr><td>床单+被套+枕套</td><td>1套</td><td><span class="bd by">建议</span></td><td>首选舒服的</td></tr>
+  <tr><td>中性笔+笔芯+记号笔</td><td>大量</td><td><span class="bd br">必带</span></td><td>澳洲文具贵</td></tr>
+  <tr><td>零钱包 · 帆布袋 · 澡堂拖鞋</td><td>各1</td><td><span class="bd br">必带</span></td><td>硬币极多！</td></tr>
+  <tr><td><strong>一次性洗脸巾</strong></td><td>3-6个月量</td><td><span class="bd by">建议</span></td><td>国内便宜，不占地</td></tr>
+  <tr><td><strong>洗衣袋</strong></td><td>2-3个</td><td><span class="bd br">必带</span></td><td>公用洗衣房必备！防衣物缠绕</td></tr>
+  <tr><td><strong>旅行收纳袋套装</strong></td><td>1套</td><td><span class="bd by">建议</span></td><td>分类打包神器，¥20-40</td></tr>
+  <tr><td><strong>免打孔挂钩</strong></td><td>3-5个</td><td><span class="bd br">必带</span></td><td>浴室挂毛巾/浴球，学生公寓不能打孔</td></tr>
+  <tr><td>指甲刀套装 · 针线包</td><td>各1套</td><td><span class="bd by">建议</span></td><td>小东西不占地</td></tr>
+</table>
+<div class="note nb"><strong>🟢 当地买</strong>：被子$15-25(Kmart) · 枕头$5-10 · 碗盘$10-20 · 砧板$10 · 洗漱大瓶装 · 台灯$8-15 · 衣架$3-5。桌面镜→Kmart $5-10，不用带。</div>
+
+<!-- 厨房 -->
+<h3>🍳 厨房用品</h3>
+<h4>🔴 从国内带（~3kg）</h4>
+<table>
+  <tr><th>物品</th><th>预算¥</th><th>说明</th></tr>
+  <tr><td>中式菜刀(十八子/邓家刀)</td><td>50-150</td><td>最值得带！澳洲$25-50品质差。必须托运！</td></tr>
+  <tr><td>筷子5-10双</td><td>20-50</td><td>华超$3-5/双质感差</td></tr>
+  <tr><td>擀面杖+硅胶垫+刮板+蒸笼布</td><td>40-105</td><td>面食套件，轻便</td></tr>
+  <tr><td>削皮器+厨房剪刀+磨刀石</td><td>40-80</td><td>国内便宜好用</td></tr>
+  <tr><td>保鲜盒(乐扣2-3个)</td><td>20-50</td><td></td></tr>
+  <tr><td>好花椒+干辣椒(各100g)</td><td>20-40</td><td>如讲究品质</td></tr>
+</table>
+
+<h4>🟢 悉尼买</h4>
+<table>
+  <tr><th>物品</th><th>去哪</th><th>预算AUD</th></tr>
+  <tr><td>炒锅(中式铁锅)</td><td>Eastwood华超/IKEA</td><td>$25-50</td></tr>
   <tr><td>平底锅+汤锅</td><td>Kmart</td><td>$25-45</td></tr>
   <tr><td>电饭煲</td><td>二手群$10-30/华超$50-80</td><td>$10-80</td></tr>
-  <tr><td>碗盘套装+砧板+锅铲</td><td>Kmart</td><td>$25-45</td></tr>
-  <tr><td>全部大料+调料</td><td>Eastwood华超</td><td>$70-100</td></tr>
-  <tr><td>姜（鲜姜→切片冷冻！）</td><td>Eastwood华超</td><td>$15-25/kg</td></tr>
-  <tr><td>蒜+葱+香菜</td><td>Eastwood华超</td><td>$3-6/kg</td></tr>
+  <tr><td>碗盘+砧板+锅铲</td><td>Kmart</td><td>$25-45</td></tr>
+  <tr><td>全部大料+调料(八角花椒桂皮...)</td><td>Eastwood华超</td><td>$70-100</td></tr>
+  <tr><td>姜(华超$15-25/kg→切片冷冻)</td><td>Eastwood华超</td><td>$0.5-2/次</td></tr>
+</table>
+<div class="note ng"><strong>🫚 姜的解决方案</strong>：Coles $25-45/kg → Eastwood华超$15-25/kg → 切片/末→冷冻→用一个月。冷冻姜末$3-5/盒备用。</div>
+
+<h4>🔵 集运可选</h4>
+<table>
+  <tr><th>物品</th><th>预算¥</th></tr>
+  <tr><td>电饼铛 · 豆浆机/破壁机</td><td>100-500</td></tr>
+  <tr><td>手动压面机</td><td>50-150</td></tr>
+  <tr><td>大料囤货(1kg+) · 干蘑菇/木耳/红枣</td><td>150-300</td></tr>
 </table>
 
-<h3>🫚 姜的解决方案</h3>
-<div class="note tag-green">
-  <strong>Coles $25-45/kg →</strong> Eastwood华超$15-25/kg → 切片/切末 → 分装冷冻格 → 用一个月。冷冻姜末$3-5/盒备用。姜粉$3应急。
+<!-- 花洒 -->
+<h3>🚿 过滤花洒 & 水龙头过滤器</h3>
+<div class="card"><div class="card-header">全从国内带 · ~1.1kg · ¥162-310</div>
+<table>
+  <tr><th>物品</th><th>淘宝关键词</th><th>预算¥</th></tr>
+  <tr><td>过滤花洒头</td><td>复旦申花/小绿锅 VC除氯</td><td>80-150</td></tr>
+  <tr><td>不锈钢软管1.5m</td><td>花洒软管304不锈钢</td><td>15-25</td></tr>
+  <tr><td>免打孔花洒支架</td><td>花洒支架免打孔吸盘</td><td>15-30</td></tr>
+  <tr><td>万能转接头套装</td><td>花洒转接头万能4分6分</td><td>10-20</td></tr>
+  <tr><td>生料带1卷</td><td>水暖生料带</td><td>2-5</td></tr>
+  <tr><td>水龙头过滤器</td><td>水龙头过滤器除氯苏泊尔/九阳</td><td>40-80</td></tr>
+</table>
+<div class="note nb"><strong>🔧 澳洲 G1/2 ≈ 中国 1/2" BSP，直接拧</strong>。老房子带万能转接头。支架必须免打孔！拆下的原装花洒保存，退房换回。</div>
 </div>
 
-<div class="source-item"><span class="tag tag-v">✅ 已验证</span> 悉尼华超香料价格（八角$2.20-3.50/100g、花椒$3.50-5.00/100g等）— 基于小红书留学生实地探访帖及通利超市公开价格；Coles/Woolworths价格基于官网搜索（八角$4.50/15g）。华超-vs-Coles价差15-20倍的对比经交叉验证。</div>
-<div class="source-item"><span class="tag tag-u">⚠️ 基于经验</span> Kmart/IKEA锅具价格基于公开零售信息。Eastwood华超调料品牌（李锦记/海天/王守义等）为已知在售品牌，具体门店可能有差异。</div>
-
-<!-- ===== 厨房电器 ===== -->
-<h2><span class="num">Section 07</span>小电器 &amp; 面食工具</h2>
-
+<!-- 海关 -->
+<h3>📦 海关红线速查</h3>
 <table>
-  <tr><th>电器</th><th>方案</th><th>预算</th></tr>
-  <tr><td>电饭煲</td><td><span class="badge badge-g">当地买</span></td><td>Kmart $15-25 / 二手$10-25</td></tr>
-  <tr><td>空气炸锅/电磁炉/电热水壶</td><td><span class="badge badge-g">Kmart买</span></td><td>$10-90</td></tr>
-  <tr><td>电饼铛/豆浆机/破壁机</td><td><span class="badge badge-b">集运</span></td><td>国内¥100-500</td></tr>
-  <tr><td>手动压面机</td><td><span class="badge badge-y">国内带/集运</span></td><td>¥50-150</td></tr>
+  <tr><th style="background:#c6f6d5">✅ 可以带/寄</th><th style="background:#fed7d7">❌ 绝对不能</th></tr>
+  <tr><td>干香料(八角/花椒/桂皮·商业密封)</td><td>鲜姜/鲜蒜/鲜辣椒(带土带根)</td></tr>
+  <tr><td>干辣椒/茶叶/干蘑菇/木耳/红枣</td><td>任何肉类制品(火腿肠/肉松/肉干)</td></tr>
+  <tr><td>粉丝/挂面(无蛋·商业包装)</td><td>蛋类及含蛋制品</td></tr>
+  <tr><td>酱油/醋/老干妈(商业密封瓶装)</td><td>自制酱料/散装调料(无标签)</td></tr>
+  <tr><td>火锅底料(清油版·商业包装)</td><td>含牛油/鸡油火锅底料 — 高风险没收</td></tr>
+</table>
+<div class="note nr"><strong>🚨 所有食品入境卡打YES申报！</strong>不申报罚款$2,664 AUD+签证风险。</div>
+
+<!-- Checklist -->
+<h3>📋 出发前最终Checklist</h3>
+<div class="ci"><span class="box">☐</span>护照有效期>6个月？签证确认已打印？CoE+OSHC+Offer+住宿合同已打印？</div>
+<div class="ci"><span class="box">☐</span>行李箱1(海关友好箱)+行李箱2(杂项)已打包？行李箱保护套已套好？</div>
+<div class="ci"><span class="box">☐</span>随身包：证件+电脑+充电宝+眼镜+笔+U型枕+湿巾？充电宝<strong>随身</strong>！</div>
+<div class="ci"><span class="box">☐</span>真空压缩袋+泵已使用？所有药品保留原包装？手提电子秤确认不超重？</div>
+<div class="ci"><span class="box">☐</span>花洒套装(花洒头+软管+支架+转接头+生料带)已打包？中式菜刀已托运？</div>
+<div class="ci"><span class="box">☐</span>集运包裹已发出？手机开通国际漫游？重要文件电子版存手机+云盘？</div>
+
+<!-- 后悔清单 -->
+<h3>😱 留学生「后悔清单」— 过来人血泪经验</h3>
+<div class="note nr"><strong>📊 来源</strong>：小红书多篇高赞"后悔帖"(@真真Celeste 160赞、@橙子大王、@椰椰在lumi、@Freya、@拉面大王等)真实留学生经验汇总。</div>
+<h4>😭 最后悔<em>没带</em>的东西</h4>
+<table>
+  <tr><th>物品</th><th>后悔原因</th><th>建议</th></tr>
+  <tr><td>指甲刀套装</td><td>"澳洲$10一个还巨难用"</td><td><span class="bd br">必带</span></td></tr>
+  <tr><td>手机钢化膜+贴膜工具</td><td>"店里贴$25，淘宝¥3一片"</td><td><span class="bd br">多囤</span></td></tr>
+  <tr><td>数据线(多根)</td><td>"断一根买$15，国内¥5"</td><td><span class="bd br">各3根+</span></td></tr>
+  <tr><td>文具(笔+笔芯)</td><td>"澳洲笔贵且是油笔"</td><td><span class="bd br">大量带</span></td></tr>
+  <tr><td>转换插头+排插</td><td>"机场$25一个转换头"</td><td><span class="bd br">2-3个</span></td></tr>
+  <tr><td>眼镜(备用)</td><td>"配镜花了$400+"</td><td><span class="bd br">2副+验光单</span></td></tr>
+  <tr><td>秋衣/保暖内衣</td><td>"Heattech断码且贵"</td><td><span class="bd br">2-3套</span></td></tr>
+  <tr><td>常备药</td><td>"看GP要等3天"</td><td><span class="bd br">感冒/肠胃/过敏</span></td></tr>
+</table>
+<h4>🤦 最后悔<em>带了</em>的东西</h4>
+<table>
+  <tr><th>物品</th><th>后悔原因</th><th>替代</th></tr>
+  <tr><td>被子+枕头</td><td>"Kmart $15-25，占了半个箱子"</td><td><span class="bd bg">Kmart买</span></td></tr>
+  <tr><td>电饭煲</td><td>"Kmart $15，华人区$50-100"</td><td><span class="bd bg">当地买</span></td></tr>
+  <tr><td>大量调料/火锅底料</td><td>"Eastwood全有，被海关没收更亏"</td><td><span class="bd bg">华超买</span></td></tr>
+  <tr><td>加厚羽绒/雪地靴</td><td>"悉尼不下雪，最冷5-8°C"</td><td><span class="bd bg">轻薄羽绒即可</span></td></tr>
+  <tr><td>中文教科书</td><td>"PDF+图书馆，纸质书死重"</td><td><span class="bd bb">集运少量</span></td></tr>
 </table>
 
-<div class="source-item"><span class="tag tag-u">⚠️ 基于经验</span> Kmart小电器价格基于公开目录。澳洲电商（Amazon AU）价格可自行搜索验证。集运价格（澳拼/万邦¥22-28/kg）基于公开报价。</div>
+</div><!-- /ch1 -->
 
-<!-- ===== 海关 ===== -->
-<h2><span class="num">Section 08</span>海关红线速查</h2>
+<!-- ===== CHAPTER 2: 旅途中 ===== -->
+<div class="chapter" id="ch2">
+<div class="chapter-num">Chapter 02</div>
+<h2>旅途中 · 中转 & 入境</h2>
 
-<table>
-  <tr><th style="background:#c6f6d5;">✅ 可以带/寄</th><th style="background:#fed7d7;">❌ 绝对不能</th></tr>
-  <tr><td>干香料（八角/花椒/桂皮等·商业密封包装）</td><td>鲜姜/鲜蒜/鲜辣椒（带土带根）</td></tr>
-  <tr><td>干辣椒/茶叶/干蘑菇/木耳/红枣</td><td>任何肉类制品（火腿肠/肉松/肉干）</td></tr>
-  <tr><td>粉丝/挂面（无蛋·商业包装）</td><td>蛋类及含蛋制品</td></tr>
-  <tr><td>酱油/醋/老干妈（商业密封瓶装）</td><td>自制酱料/散装调料（无商业标签）</td></tr>
-  <tr><td>火锅底料（清油版·商业包装）</td><td>含牛油/鸡油火锅底料 — 高风险没收</td></tr>
-</table>
-<div class="note tag-red"><strong>🚨 所有食品入境卡打 YES 申报！</strong> 不申报罚款$2,664 AUD。取消签证风险。</div>
+<h3>🔄 厦门1h35m中转指南</h3>
+<div class="step"><div class="sh"><div class="sn">1</div><div class="st">下机后走「国际中转」通道</div></div><div class="sb">MF8432到达厦门T3 → 跟随「国际/港澳台中转」标识 → 不要出关去取行李！行李已直达悉尼。</div></div>
+<div class="step"><div class="sh"><div class="sn">2</div><div class="st">过海关+安检</div></div><div class="sb">出示护照+登机牌 → 国际出发安检。液体单件≤100ml，总量≤1L，装透明袋。</div></div>
+<div class="step"><div class="sh"><div class="sn">3</div><div class="st">直奔MF801登机口</div></div><div class="sb">1h35m偏紧但够用。不逛免税店！登机口信息以机场大屏为准。MF801通常在T3国际出发区。</div><div class="wn"><strong>⚠️ 如果前段延误</strong>：厦航同航司中转，MF8432晚点MF801会等。落地后听广播/找地勤。</div></div>
 
-<div class="source-item"><span class="tag tag-v">✅ 已确认</span> 澳洲ABF/农业部的生物安全入境规则。罚款金额$2,664 AUD（2024年Infringement Notice标准）。来源：abf.gov.au / agriculture.gov.au。</div>
-
-<!-- ===== 花洒 ===== -->
-<h2><span class="num">Section 09</span>过滤花洒 &amp; 水龙头过滤器</h2>
-
+<h3>📝 入境卡填写</h3>
 <div class="card">
-  <div class="card-header">全从国内带 · 总重~1.1kg · ¥162-310</div>
-  <table>
-    <tr><th>物品</th><th>淘宝关键词</th><th>预算 ¥</th></tr>
-    <tr><td>过滤花洒头</td><td>复旦申花/小绿锅 VC除氯过滤花洒</td><td>80-150</td></tr>
-    <tr><td>不锈钢软管 1.5m</td><td>花洒软管 1.5m 304不锈钢</td><td>15-25</td></tr>
-    <tr><td>免打孔花洒支架</td><td>花洒支架 免打孔 吸盘</td><td>15-30</td></tr>
-    <tr><td><strong>万能转接头套装</strong></td><td>花洒转接头 万能 4分6分</td><td>10-20</td></tr>
-    <tr><td>生料带 1卷</td><td>水暖生料带</td><td>2-5</td></tr>
-    <tr><td>水龙头过滤器</td><td>水龙头过滤器 除氯 苏泊尔/九阳</td><td>40-80</td></tr>
-  </table>
-</div>
-
-<div class="note tag-blue">
-  <strong>🔧 接口兼容性</strong>：澳洲花洒接口 1/2" BSP ≈ 中国 G1/2（同为14牙/英寸）。理论上直接拧。但老房子/学生公寓可能有非标尺寸——<strong>万能转接头套装是关键</strong>。支架必须免打孔（学生公寓不能打墙）。拆下的原装花洒保存好，退房换回去。
-</div>
-
-<div class="source-item"><span class="tag tag-v">✅ 已确认</span> 澳洲管道标准 AS/NZS 使用 BSP 螺纹。G1/2 ≈ 1/2" BSP 的兼容性经工程标准交叉验证。</div>
-<div class="source-item"><span class="tag tag-v">✅ 已验证</span> 小红书用户 @碳酸 实测澳洲花洒接口尺寸（15mm/20mm/25mm/29mm均有）。@Each易執 596赞花洒安装教程确认Bunnings可购买全套。@盆儿买了啥 1156赞教程确认转接头方案可行。</div>
-
-<!-- ===== MQ租房 ===== -->
-<h2><span class="num">Section 10</span>MQ周边租房 &amp; 落地待办</h2>
-
-<h3>四大区域租金对比</h3>
+<p>飞机上发放入境卡（Incoming Passenger Card），以下项目<strong>必须打YES</strong>：</p>
 <table>
-  <tr><th>区域</th><th>单间/周</th><th>通勤</th><th>特点</th></tr>
-  <tr><td>Macquarie Park</td><td>$350-450</td><td>步行5min</td><td>MQ Centre下楼，IT公司多兼职</td></tr>
-  <tr><td>Marsfield ⭐</td><td>$300-380</td><td>公交8min</td><td>24h Coles，性价比王</td></tr>
-  <tr><td>Eastwood 🥡</td><td>$280-350</td><td>火车12min</td><td>中餐一条街，华人超市天堂</td></tr>
-  <tr><td>Epping</td><td>$330-400</td><td>地铁4min</td><td>Westfield，安静学霸区</td></tr>
+  <tr><th>问题</th><th>答案</th><th>原因</th></tr>
+  <tr><td>携带药品？</td><td><strong>✅ YES</strong></td><td>带了任何药</td></tr>
+  <tr><td>携带食品？</td><td><strong>✅ YES</strong></td><td>带了调料/零食/茶叶</td></tr>
+  <tr><td>携带木制品/植物？</td><td><strong>✅ YES</strong></td><td>如有筷子/木梳</td></tr>
+  <tr><td>携带动物制品？</td><td><strong>✅ YES</strong></td><td>如有皮制品/羽绒服</td></tr>
 </table>
-<div class="note tag-amber"><strong>月总开销预估</strong>：$1,700-2,700 AUD（含房租+Bill+伙食+交通）。丰俭由人。</div>
+<div class="note nr"><strong>🚨 申报了最多没收东西。不申报罚款$2,664+签证风险。</strong> 不确定就问海关人员。</div>
+</div>
 
-<div class="source-item"><span class="tag tag-v">✅ 已验证</span> MQ周边租金数据来自小红书 @Ulive悉尼学长学姐（MQ租房全攻略·39收·35赞）及 @方块Jude（MQ住了5年·176赞·66评），均为2025-2026年真实价格。</div>
+<h3>✈️ 机上随身提醒</h3>
+<div class="ci"><span class="box">☐</span>充电宝<strong>必须随身</strong>！不可托运。≤100Wh(20000mAh=74Wh ✅)</div>
+<div class="ci"><span class="box">☐</span>液体单件≤100ml，总量≤1L，透明袋装好</div>
+<div class="ci"><span class="box">☐</span>一件薄外套(机舱空调冷) · U型枕 · 湿巾</div>
+<div class="ci"><span class="box">☐</span>一支黑笔(填入境卡)放在随手可拿的口袋</div>
+<div class="ci"><span class="box">☐</span>重要证件复印件和电子版分别存放</div>
 
-<!-- ===== 落地 ===== -->
-<h3>落地第一周</h3>
-<div class="check-item"><span class="box">☐</span>买Opal交通卡充值 · 办澳洲手机卡 · 办Commonwealth/ANZ银行卡</div>
-<div class="check-item"><span class="box">☐</span>Macquarie Centre采购日用品（Kmart+Coles+通利）</div>
-<div class="check-item"><span class="box">☐</span>MQ Student Centre领学生卡 · 申请TFN税号 · 注册UNiDAYS</div>
-<div class="check-item"><span class="box">☐</span>下载HotDoc App（GP预约）· 加入MQ新生群</div>
+</div><!-- /ch2 -->
 
-<!-- ===== 最终检查 ===== -->
-<h2><span class="num">Section 11</span>出发前最终检查</h2>
+<!-- ===== CHAPTER 3: 抵达悉尼 ===== -->
+<div class="chapter" id="ch3">
+<div class="chapter-num">Chapter 03</div>
+<h2>抵达悉尼 · 机场到MQ</h2>
 
-<div class="check-item"><span class="box">☐</span>护照有效期>6个月？签证确认已打印？</div>
-<div class="check-item"><span class="box">☐</span>CoE + OSHC + Offer + 住宿合同已打印？驾照+NAATI翻译已准备？</div>
-<div class="check-item"><span class="box">☐</span>行李箱1（海关友好箱）+ 行李箱2（杂项）已打包？</div>
-<div class="check-item"><span class="box">☐</span>随身包：证件+电脑+充电宝+眼镜+笔？充电宝<strong>随身</strong>！</div>
-<div class="check-item"><span class="box">☐</span>真空压缩袋已使用？所有药品保留原包装？</div>
-<div class="check-item"><span class="box">☐</span>集运包裹已发出（提前1个月）？手机开通国际漫游？</div>
-<div class="check-item"><span class="box">☐</span>重要文件电子版存手机+云盘？下载悉尼离线地图？</div>
-<div class="check-item"><span class="box">☐</span>花洒套装（花洒头+软管+支架+转接头+生料带）已打包？</div>
-<div class="check-item"><span class="box">☐</span>中式菜刀已托运（用硬壳包裹好）？</div>
+<h3>🗺️ 悉尼机场 → Marsfield 路线</h3>
+<div id="baiduMap"></div>
+<div class="map-leg"><span>🛬 悉尼金斯福德史密斯机场(SYD T1)</span><span>→</span><span>🏠 Marsfield (MQ附近)</span><span>约30km · 驾车35-45分钟</span></div>
+
+<h3>🚗 接机全攻略</h3>
+<div class="note nb"><strong>📊 来源</strong>：以下接机流程改编自留学生实战经验，个人信息已脱敏。</div>
+
+<div class="step"><div class="sh"><div class="sn">1</div><div class="st">飞机落地后 · 连WiFi</div></div><div class="sb">落地后打开手机WiFi → 选"<strong>Sydney Airport Free WiFi</strong>" → 浏览器自动弹出登录页 → 输入姓名+邮箱即可连接（免费不限时）。</div><div class="tp"><strong>💡 提示</strong>：如果WiFi登录页没弹出，手动打开浏览器访问任意网址即可跳转。</div></div>
+
+<div class="step"><div class="sh"><div class="sn">2</div><div class="st">过海关 · 电子护照快速通道</div></div><div class="sb">中国新版电子护照(带芯片标志)可走<strong>SmartGate自助通道</strong>：护照扫描 → 拍照 → 出小票 → 通过。比人工快很多。</div></div>
+
+<div class="step"><div class="sh"><div class="sn">3</div><div class="st">取托运行李</div></div><div class="sb">跟随"Baggage Claim"标识 → 大屏找到MF801对应的行李转盘。行李直达，厦门托运的箱子在这里取。</div></div>
+
+<div class="step"><div class="sh"><div class="sn">4</div><div class="st">过海关申报 · 走红色通道</div></div><div class="sb">因为你带了药品+食品，<strong>走红色申报通道</strong>。把入境卡(打了YES)+药品清单+食品清单给海关人员看。态度好、主动申报，通常1-2分钟放行。最多抽查开箱。</div><div class="wn"><strong>⚠️ 不要走绿色通道！</strong> 打了YES就必须走红色。走绿色被抽查到=罚款。</div></div>
+
+<div class="step"><div class="sh"><div class="sn">5</div><div class="st">出关后 · 到接机等候区</div></div><div class="sb">出海关后穿过Arrivals大厅 → 找到<strong>Meeting Point</strong>（会合点，通常有个大字母标志）→ 与接机人会合。或者：</div></div>
+
+<div class="step"><div class="sh"><div class="sn">6</div><div class="st">买Opal卡 · 去MQ</div></div><div class="sb">如果自己走：机场T1火车站买Opal卡充值$20-50 → 坐T8火车到Central → 换Metro到Macquarie University站。全程约45-60分钟。<strong>机场站附加费$17+</strong>，建议坐到Mascot再换。</div></div>
+
+<h4>📋 落地前确认清单</h4>
+<div class="card">
+<div class="ci"><span class="box">☐</span>手机开通国际漫游（移动10086/联通10010/电信10000）</div>
+<div class="ci"><span class="box">☐</span>提前淘宝买澳洲SIM卡(¥30-50)，飞机上换好</div>
+<div class="ci"><span class="box">☐</span>截图保存：航班号、住宿地址、接机联系方式</div>
+<div class="ci"><span class="box">☐</span>药品清单（中英文）+食品清单打印好放随身包</div>
+</div>
+
+</div><!-- /ch3 -->
+
+<!-- ===== CHAPTER 4: 安顿生活 ===== -->
+<div class="chapter" id="ch4">
+<div class="chapter-num">Chapter 04</div>
+<h2>安顿生活 · MQ周边 & 长期生存</h2>
+
+<h3>🗺️ MQ周边地图</h3>
+<div class="css-map-container"><div class="css-map">
+  <div class="map-grid"></div>
+  <div class="map-rd map-rd-h" style="top:42%;left:0;width:100%"><span class="rd-lb">M2 Motorway</span></div>
+  <div class="map-rd map-rd-v" style="left:48%;top:0;height:100%"><span class="rd-lb" style="left:6px">Metro</span></div>
+  <div class="map-rd map-rd-h" style="top:68%;left:25%;width:50%"><span class="rd-lb">Epping Rd</span></div>
+  <div class="map-mk" style="top:35%;left:52%"><div class="mk-dt mk-r"></div><div class="mk-lb">🏫 MQ</div></div>
+  <div class="map-mk" style="top:40%;left:65%"><div class="mk-dt mk-o"></div><div class="mk-lb">🛍️ Macquarie Ctr</div></div>
+  <div class="map-mk" style="top:55%;left:15%"><div class="mk-dt mk-g"></div><div class="mk-lb">🥡 Eastwood</div></div>
+  <div class="map-mk" style="top:15%;left:78%"><div class="mk-dt mk-b"></div><div class="mk-lb">🛒 Chatswood</div></div>
+  <div class="map-mk" style="top:78%;left:22%"><div class="mk-dt mk-p"></div><div class="mk-lb">🏘️ Rhodes</div></div>
+  <div class="map-mk" style="top:30%;left:35%"><div class="mk-dt mk-t"></div><div class="mk-lb">📚 Epping</div></div>
+  <div class="map-mk" style="top:48%;left:45%"><div class="mk-dt mk-y"></div><div class="mk-lb">⭐ Marsfield</div></div>
+</div></div>
+<div class="map-leg"><span>🏫 MQ→Macquarie Ctr：步行5分钟</span><span>🥡 Eastwood：公交545路5-10分钟</span><span>🛒 Chatswood：Metro 10分钟</span><span>🚆 CBD：Metro约25分钟</span></div>
+
+<!-- 租房 -->
+<h3>🏠 MQ周边租房攻略</h3>
+<div class="note nb"><strong>📊 来源</strong>：小红书 @Ulive悉尼学长学姐(39收·35赞) · @方块Jude(MQ住5年·176赞·66评)，2025-2026真实租金。</div>
+<table>
+  <tr><th>区域</th><th>单间/周</th><th>通勤</th><th>亮点</th></tr>
+  <tr><td>Macquarie Park</td><td style="color:#c53030;font-weight:700">$350-450</td><td>步行5min</td><td>MQ Centre下楼，IT公司多兼职</td></tr>
+  <tr><td>Marsfield ⭐</td><td style="color:#38a169;font-weight:700">$300-380</td><td>公交8min</td><td>24h Coles，性价比王</td></tr>
+  <tr><td>Eastwood 🥡</td><td style="color:#38a169;font-weight:700">$280-350</td><td>火车12min</td><td>中餐一条街，华超天堂</td></tr>
+  <tr><td>Epping</td><td style="color:#d69e2e;font-weight:700">$330-400</td><td>地铁4min</td><td>Westfield，安静学霸区</td></tr>
+</table>
+<div class="note nr"><strong>🚨 防坑</strong>：视频看房！问清Bills是否包网电(不包≈$100+/月)！押金必须上交Fair Trading！入住拍照记录瑕疵！</div>
+<div class="note na"><strong>💰 月开销预估</strong>：$1,700-2,700 AUD(含房租+Bill+伙食+交通)。丰俭由人。</div>
+
+<!-- 落地办卡 -->
+<h3>📱 落地必办卡 + TFN</h3>
+<table>
+  <tr><th>#</th><th>卡</th><th>花费</th><th>时间</th><th>Tips</th></tr>
+  <tr><td>1</td><td>📱 手机卡</td><td>$10-40/月</td><td>落地即办</td><td>Vodafone学生$30=50GB；Woolworths Mobile送超市10% off</td></tr>
+  <tr><td>2</td><td>🚆 Opal卡</td><td>充值$20起</td><td>落地即办</td><td>刷满8次后半价；周日$2.50封顶！机场站贵$17+</td></tr>
+  <tr><td>3</td><td>🏦 银行卡</td><td>免费</td><td>3天内</td><td>Commonwealth(网点多)或ANZ</td></tr>
+  <tr><td>4</td><td>🎓 学生卡</td><td>免费</td><td>到校当天</td><td>MQ Student Centre</td></tr>
+  <tr><td>5</td><td>💰 TFN税号</td><td>免费</td><td>尽快(2-4周)</td><td>ATO官网在线申请，打工必备</td></tr>
+</table>
+
+<!-- 省钱 -->
+<h3>💰 悉尼留学生省钱技巧</h3>
+<h4>🛒 超市</h4>
+<table>
+  <tr><th>技巧</th><th>省多少</th><th>操作</th></tr>
+  <tr><td>Aldi采购</td><td>比Coles便宜20-30%</td><td>日用品+基础食材</td></tr>
+  <tr><td>Coles/Woolies半价</td><td>50% off</td><td>每周三更新折扣，囤货</td></tr>
+  <tr><td>华人区买菜</td><td>比Coles便宜30-50%</td><td>Eastwood周末菜市场</td></tr>
+  <tr><td>学生折扣</td><td>10-20% off</td><td>UNiDAYS注册，JB Hi-Fi/Apple/Spotify/KFC</td></tr>
+</table>
+<h4>🚆 交通</h4>
+<table>
+  <tr><td>Opal刷满8次</td><td>第9次起半价</td></tr>
+  <tr><td>周日$2.50封顶</td><td>全天不限次</td></tr>
+  <tr><td>避开机场站</td><td>附加费$15-17</td></tr>
+</table>
+<h4>🛍️ 二手</h4>
+<table>
+  <tr><td>Gumtree/Facebook Marketplace</td><td>家具电器乐器</td></tr>
+  <tr><td>MQ学生微信群</td><td>毕业甩卖，电饭煲$10</td></tr>
+  <tr><td>Kmart</td><td>全新基础款最便宜</td></tr>
+</table>
+
+<!-- 就医 -->
+<h3>🏥 澳洲就医 + OSHC</h3>
+<table>
+  <tr><th>级别</th><th>去哪</th><th>花费</th><th>适用</th></tr>
+  <tr><td>GP(全科)</td><td>附近Medical Centre</td><td>OSHC报销</td><td>感冒/发烧/开处方</td></tr>
+  <tr><td>急诊</td><td>医院Emergency</td><td>OSHC覆盖</td><td>严重外伤/剧痛</td></tr>
+  <tr><td>牙科/眼科</td><td>私人诊所</td><td>OSHC一般不包</td><td>自费或Extra保险</td></tr>
+</table>
+<div class="note ng"><strong>💡 MQ校内就医</strong>：Campus Wellbeing(校内GP+心理咨询)，地址18 Wally's Walk。电话(02)9812 3944。Bulk Bill=不用垫钱。</div>
+<div class="note nr"><strong>🚨 紧急拨打000</strong>。MQ附近医院：Ryde Hospital(公立急诊)。语言不通要求TIS National 131 450(免费翻译)。</div>
+
+<h4>常用药中澳对照</h4>
+<table>
+  <tr><th>国内</th><th>澳洲</th><th>渠道</th></tr>
+  <tr><td>布洛芬</td><td>Nurofen</td><td>超市/药房</td></tr>
+  <tr><td>对乙酰氨基酚</td><td>Panadol</td><td>超市/药房(国民神药)</td></tr>
+  <tr><td>氯雷他定</td><td>Claratyne</td><td>药房</td></tr>
+  <tr><td>蒙脱石散</td><td>Gastro-Stop</td><td>药房</td></tr>
+  <tr><td>云南白药</td><td>Deep Heat/Voltaren</td><td>药房</td></tr>
+</table>
+
+</div><!-- /ch4 -->
 
 <!-- ===== SOURCES ===== -->
-<div class="sources">
-  <h3>📚 信息来源 &amp; 真实性声明</h3>
-  
-  <div class="source-item">
-    <span class="tag tag-v">✅ 已验证</span>
-    <strong>航班信息</strong>：由用户提供（同程订单 ITAY9J260430LWQR6605）。机型/时间以航司最终确认为准。
-  </div>
-  <div class="source-item">
-    <span class="tag tag-v">✅ 已验证</span>
-    <strong>行李政策</strong>：基于厦门航空国际航线经济舱标准政策（2×23kg托运+1×7kg登机+1个人物品）。建议出行前拨打厦航客服95557确认具体票面规则。
-  </div>
-  <div class="source-item">
-    <span class="tag tag-v">✅ 已验证</span>
-    <strong>海关规则</strong>：澳洲ABF官网（abf.gov.au）"Can you bring it in"页面。罚款$2,664 AUD为2024年Infringement Notice标准。伪麻黄碱/阿片类药物禁止入境为TGA管制规定。
-  </div>
-  <div class="source-item">
-    <span class="tag tag-v">✅ 已验证</span>
-    <strong>MQ租房价格</strong>：小红书 @Ulive悉尼学长学姐（笔记ID: 688a20ec0000000025015fb9）· @方块Jude（笔记ID: 69e711ff0000000021005b84）。2025-2026年数据。
-  </div>
-  <div class="source-item">
-    <span class="tag tag-v">✅ 已验证</span>
-    <strong>华超香料价格</strong>：通过web search交叉验证Coles/Woolworths官网价格（八角$4.50/15g）与小红书留学生实地探访帖（通利/新人人华超价格）。华超-vs-Coles价差15-20倍的对比经确认。
-  </div>
-  <div class="source-item">
-    <span class="tag tag-v">✅ 已验证</span>
-    <strong>花洒接口标准</strong>：澳洲AS/NZS管道标准使用BSP螺纹。中国G1/2与1/2" BSP兼容性经工程标准交叉验证。小红书 @碳酸（笔记ID: 68bae044000000001c03d7f5）实测澳洲花洒接口多种尺寸。@Each易執（596赞）· @盆儿买了啥（1156赞）花洒安装教程。
-  </div>
-  <div class="source-item">
-    <span class="tag tag-u">⚠️ 基于经验</span>
-    <strong>Kmart/IKEA/华超产品价格</strong>：基于公开零售目录及留学生经验帖综合。实际价格可能因门店、季节波动。建议以到店价为准。
-  </div>
-  <div class="source-item">
-    <span class="tag tag-u">⚠️ 基于经验</span>
-    <strong>衣物/电子产品/面食工具等</strong>：综合知乎、小红书、B站留学生经验帖。中国-vs-澳洲价格对比基于多方经验汇总。具体产品以实际零售价为准。
-  </div>
-  <div class="source-item">
-    <span class="tag tag-x">⚠️ 未独立验证</span>
-    <strong>MQ Student Village具体规定</strong>（是否允许换花洒、墙面打孔等）：建议入住时向前台确认或查阅租房合同。本手册建议免打孔方案以规避风险。
-  </div>
-  <div class="source-item">
-    <span class="tag tag-x">⚠️ 未独立验证</span>
-    <strong>集运公司报价</strong>（澳拼¥22-28/kg、4PX¥15-25/kg等）：基于公开市场报价，实际价格可能因季节/促销/体积重变动。建议获取最新报价后再寄。
-  </div>
+<div class="sources" id="sources">
+<h3>📚 信息来源 & 真实性声明</h3>
 
-  <p style="font-size:0.75rem;color:#999;margin-top:24px;text-align:center">
-    📋 本手册编制于2026年7月9日。出发前1个月建议重新搜索"2026悉尼留学行李"确认海关政策无变化。<br>
-    标签说明：<span class="tag tag-v">✅ 已验证</span> = 经官方来源或多方交叉验证 · <span class="tag tag-u">⚠️ 基于经验</span> = 综合多方经验，实际可能有波动 · <span class="tag tag-x">⚠️ 未独立验证</span> = 建议自行确认
-  </p>
+<div class="si"><span class="st sv">✅ 已验证</span><strong>航班信息</strong>：MF8432/MF801 · 厦门航空 · 成都→厦门→悉尼。机型/时间为票面信息。</div>
+<div class="si"><span class="st sv">✅ 已验证</span><strong>行李政策</strong>：基于厦门航空国际线经济舱标准(2×23kg+1×7kg登机+1个人物品)。建议致电95557确认。</div>
+<div class="si"><span class="st sv">✅ 已验证</span><strong>海关规则</strong>：ABF官网(abf.gov.au)。罚款$2,664为2024年Infringement Notice标准。伪麻黄碱/阿片类禁止为TGA管制规定。</div>
+<div class="si"><span class="st sv">✅ 已验证</span><strong>MQ租房价格</strong>：小红书 @Ulive悉尼学长学姐(笔记ID:688a20ec0000000025015fb9)·@方块Jude(笔记ID:69e711ff0000000021005b84)。2025-2026年真实数据。</div>
+<div class="si"><span class="st sv">✅ 已验证</span><strong>华超香料价格</strong>：通过web search交叉验证Coles/Woolworths官网(八角$4.50/15g)与小红书留学生华超实地探访帖。价差15-20倍经确认。</div>
+<div class="si"><span class="st sv">✅ 已验证</span><strong>花洒接口标准</strong>：澳洲AS/NZS使用BSP螺纹。G1/2≈1/2"BSP兼容性经工程标准交叉验证。小红书@碳酸实测多种尺寸。</div>
+<div class="si"><span class="st su">⚠️ 基于经验</span><strong>Kmart/IKEA/华超价格</strong>：基于公开零售目录及留学生经验帖综合。实际价格可能因门店/季节波动。</div>
+<div class="si"><span class="st su">⚠️ 基于经验</span><strong>衣物/电子/日用品价格对比</strong>：综合知乎、小红书、B站数十篇留学生经验帖。以实际零售价为准。</div>
+<div class="si"><span class="st su">⚠️ 基于经验</span><strong>集运公司报价</strong>：基于公开市场报价，可能因季节/体积重变动。建议获取最新报价。</div>
+<div class="si"><span class="st sx">⚠️ 未独立验证</span><strong>MQ Student Village具体规定</strong>(花洒/墙面等)：建议入住时确认。本手册建议免打孔方案规避风险。</div>
+<div class="si"><span class="st sx">⚠️ 未独立验证</span><strong>接机公司信息</strong>：改编自留学生经验。具体联系方式和服务可用性请自行核实。</div>
+
+<p style="font-size:0.72rem;color:#999;margin-top:20px;text-align:center">
+  📋 郑佳骐KAI 制作 · 编制于2026年7月9日。出发前1个月建议重新搜索"2026悉尼留学行李"确认政策无变化。<br>
+  <span class="st sv">✅ 已验证</span>=经官方来源或多方交叉验证 · <span class="st su">⚠️ 基于经验</span>=多方经验汇总 · <span class="st sx">⚠️ 未验证</span>=建议自行确认
+</p>
 </div>
 
 </article>
+
+<!-- ===== BAIDU MAP INIT ===== -->
+<script>
+(function(){
+  try {
+    var map = new BMap.Map('baiduMap');
+    // Sydney airport (offset for BD09)
+    var start = new BMap.Point(151.178, -33.943);
+    var end   = new BMap.Point(151.107, -33.778);
+    map.centerAndZoom(new BMap.Point(151.142, -33.860), 12);
+    map.addControl(new BMap.NavigationControl());
+    var mk1 = new BMap.Marker(start);
+    var mk2 = new BMap.Marker(end);
+    map.addOverlay(mk1); map.addOverlay(mk2);
+    var opts1 = new BMap.Label('🛬 悉尼机场',{offset:new BMap.Size(20,-10)});
+    var opts2 = new BMap.Label('🏠 Marsfield (MQ)',{offset:new BMap.Size(20,-10)});
+    mk1.setLabel(opts1); mk2.setLabel(opts2);
+    var driving = new BMap.DrivingRoute(map);
+    driving.search(start, end);
+  } catch(e) { document.getElementById('baiduMap').innerHTML = '<p style=text-align:center;padding:120px 0;color:#999>🗺️ 地图加载中…如无法显示请使用VPN或查看Google Maps版本</p>'; }
+})();
+</script>
 
 </body>
 </html>
